@@ -12,9 +12,15 @@ app.use('/img', express.static(path + 'public/img'));
 
 // Set Views
 
+// home
 app.get('/', (req, res) => {
 	res.sendFile(path + '/views/index.html')
 });
+
+// 404 page
+app.use((req, res) => {
+	res.sendFile(path + '/views/404.html');
+})
 
 app.listen(port, () => {
 	console.log('listening for requests on port 3000...')
