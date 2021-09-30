@@ -6,7 +6,6 @@ const job_board = ["https://www.indeed.com/", "https://www.linkedin.com/jobs/", 
 
 const avoid = ['revature'];
 const keywords = ['python', 'junior', 'flask'];
-const count = 0;
 const jobs = {};
 
 // axios response element schema
@@ -16,16 +15,39 @@ function indeedScraper() {
 		.then((response) => {
 			let $ = cheerio.load(response.data);
 
-			const job_board = $('#mosaic-provider-jobcards');
+			// can use .tex(), .html(), .find(), children(), parent() on object
+			$('.result').each((index, element) => {
+				// job title = <h2 class="jobTitle">
+				// company name = <span class="companyName">
+				// location = <div class=companyLocation>
+				// description = <div class="job-snippet"> --> ul --> li
+				// job link = <a class="tapItem fs-unmast result">
+				// date = <span class="date">
 
-			// can use .tex(), .html(), .find(), children(), parent() on job_board object
-			const listings = job_board.children(); // want to get all listings in the job board
+				const title = $(element)
+					.find('.jobTitle')
+					.text();
+				
+				const companyName = $(element)
+					.find('.companyName')
+					.text();
+				
+				const location = $(element)
+					.find('.companyLocation')
+					.text();
+					
+				const description = $(element)
+					.find('.job-snippet')
+					.text();
 
-			// loop over elements to grab specific tags and attrs
-			$('#mosaic-provider-jobcards a').each((i, el) => {
-				const item = $(el).text();
-				const link = $(el).attr('href');
-				console.log(item, '\n');
+				const link = $(element)
+					.attr('href');
+
+				const date = $(element)
+					.find('.date')
+					.text();
+
+				jobs[index] = [title, companyName, location, description, link, date];
 			})
 			
 		})
@@ -33,3 +55,4 @@ function indeedScraper() {
 	};
 
 indeedScraper();
+console.log(jobs);
