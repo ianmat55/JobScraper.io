@@ -5,48 +5,53 @@ const keywords = ['python', 'junior', 'flask'];
 const jobs = {};
 const avoid = ['revature'];
 
+//generate a url from a position and location
+const templateURL = (position, location) => {
+	let url = `https://www.indeed.com/jobs?q=${position}&l=${location}`
+	return url;
+}
+
 // axios response element schema
 // response = {data, status, statusText, headers, config} 
 async function getJobListings() {
-	const { data } = await axios.get(`https://www.indeed.com/jobs?q=${keywords[1]}%20developer%20${keywords[0]}&l=Daly%20City%2C%20CA&vjk`);
-	const labels = ['id', 'title', 'company', 'location', 'description', 'link', 'date'];
-	const identifiers = ['.jobTitle', '.companyName', 'companyLocation', '.job-snippet', 'href', 'date'];
+	const { data } = await axios.get(templateURL('junior developer', 'Daly City'));
 	const $ = cheerio.load(data);
 	const listingTable =  $('.mosaic-provider-jobcards');
 
 	// can use .text(), .html(), .find(), children(), parent() on object
+	// scraping id, title, company, location, description, link, date
 	listingTable.find('.result').each((i, element) => {
+		jobs[i] = {};
+
 		const title = $(element)
-				.find('.jobTitle')
-				.text();
-				
-			const companyName = $(element)
-				.find('.companyName')
-				.text();
-				
-			const location = $(element)
-				.find('.companyLocation')
-				.text();
-					
-			const description = $(element)
-				.find('.job-snippet')
-				.text()
-				.replace(/(\r\n|\n|\r)/gm, "");
+			.find('.jobTitle')
+			.text();
+		jobs[i]["title"] = title;
 
-			const link = $(element)
-				.attr('href');
-
-			const date = $(element)
-				.find('.date')
-				.text();
+		const companyName = $(element)
+			.find('.companyName')
+			.text();
+		jobs[i]['company'] = companyName;
 				
-			jobs['id' + i] = i;
-			jobs['title' + i] = title;
-			jobs['company' + i] = companyName;
-			jobs['location' + i] = location;
-			jobs['description' + i] = description;
-			jobs['link' + i] = link;
-			jobs['date' + i] = date;
+		const location = $(element)
+			.find('.companyLocation')
+			.text();
+		jobs[i]['location'] = location;
+
+		const description = $(element)
+			.find('.job-snippet')
+			.text()
+			.replace(/(\r\n|\n|\r)/gm, "");
+		jobs[i]['description'] = description;
+
+		const link = $(element)
+			.attr('href');
+		jobs[i]['link'] = 'https://www.indeed.com' + link;
+
+		const date = $(element)
+			.find('.date')
+			.text();
+		jobs[i]['date'] = date;
 	});
 
 	console.log(jobs)

@@ -6,7 +6,7 @@ const port = process.env.port || 3000;;
 
 // Static Files
 app.use(express.static(path + 'public'));
-app.use('/img', express.static(path + 'public/img'));
+// app.use('/img', express.static(path + 'public/img'));
 
 // Set Views
 app.set('view engine', 'ejs');
@@ -16,6 +16,7 @@ app.get('/', (req, res) => {
 	res.render('index', { title:"Hire.me" });
 });
 
+// applications
 app.get('/apps', (req, res) => {
 	res.render('applications', { title: "manage_apps" });
 })
