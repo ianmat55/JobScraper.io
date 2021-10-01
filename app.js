@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 
 // applications
 app.get('/apps', (req, res) => {
-	res.render('applications', { title: "manage_apps" });
+	res.render('applications', { title: "applications" });
 })
 
 // 404 page
