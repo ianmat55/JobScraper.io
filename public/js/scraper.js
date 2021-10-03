@@ -1,9 +1,7 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 
-const keywords = ['python', 'junior', 'flask'];
 const jobs = {};
-const avoid = ['revature'];
 
 //generate a url from a position and location
 const templateURL = (position, location) => {
@@ -13,8 +11,8 @@ const templateURL = (position, location) => {
 
 // axios response element schema
 // response = {data, status, statusText, headers, config} 
-async function getJobListings() {
-	const { data } = await axios.get(templateURL('junior developer', 'Daly City'));
+export async function getJobListings(position, location) {
+	const { data } = await axios.get(templateURL(position, location));
 	const $ = cheerio.load(data);
 	const listingTable =  $('.mosaic-provider-jobcards');
 
@@ -57,4 +55,4 @@ async function getJobListings() {
 	console.log(jobs)
 }
 
-getJobListings();
+
