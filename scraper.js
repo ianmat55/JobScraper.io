@@ -52,7 +52,7 @@ async function getJobListings(position, location) {
 		jobs[i]['date'] = date;
 	});
 
-	console.log(jobs);
+	return jobs;
 }
 
-module.exports = { getJobListings, templateURL };
+module.exports = { getJobListings, templateURL, jobs };

@@ -29,6 +29,12 @@
 		</table>
 	</div>
 
+	<% if (jobs.length > 0) { %>
+		<% jobs.forEach(job => { %>
+			<p> job.title </p>
+		<% }) %>
+	<% } %> 
+
 	<%- include('./partials/footer.ejs') %>
 </body>
 </html>

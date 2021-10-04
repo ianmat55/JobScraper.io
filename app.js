@@ -3,7 +3,7 @@ const app = express();
 const scraper = require('./scraper');
 const path = __dirname;
 
-const port = process.env.port || 3000;;
+const port = process.env.port || 3000
 
 // Static Files
 app.use(express.static(path + '/public'));
@@ -13,15 +13,20 @@ app.set('view engine', 'ejs');
 
 // home
 app.get('/', (req, res) => {
-	res.render('index', { title:"Hire.me" });
-
 	// get params for scraper
 	let title = req.query.title;
 	let location = req.query.location;
+
 	// getJobListings(title, location);
-	console.log(title);
-	console.log(location);
-	scraper.getJobListings(title, location);
+	async function getData(){
+		await scraper.getJobListings(title, location);
+		console.log(scraper.jobs);
+	}
+
+	getData();
+	console.log(scraper.jobs);
+
+	res.render('index', { title:"Hire.me", jobs:scraper.jobs });
 })
 
 // applications
