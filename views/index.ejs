@@ -33,7 +33,9 @@
 		<% jobs.forEach(job => { %>
 			<p> job.title </p>
 		<% }) %>
-	<% } %> 
+	<% } else { %>
+		<h2> No listings to show </h2>
+	<% } %>
 
 	<%- include('./partials/footer.ejs') %>
 </body>

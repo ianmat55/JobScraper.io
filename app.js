@@ -20,11 +20,8 @@ app.get('/', (req, res) => {
 	// getJobListings(title, location);
 	async function getData(){
 		await scraper.getJobListings(title, location);
-		console.log(scraper.jobs);
 	}
-
 	getData();
-	console.log(scraper.jobs);
 
 	res.render('index', { title:"Hire.me", jobs:scraper.jobs });
 })
