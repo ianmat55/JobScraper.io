@@ -52,8 +52,7 @@ async function getJobListings(position, location) {
 		jobs[i]['date'] = date;
 	});
 
-	console.log(jobs)
+	console.log(jobs);
 }
 
-module.exports = getJobListings;
-
+module.exports = { getJobListings, templateURL };

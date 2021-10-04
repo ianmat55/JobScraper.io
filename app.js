@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const scraper = require('./public/js/scraper');
+const scraper = require('./scraper');
 const path = __dirname;
 
 const port = process.env.port || 3000;;
@@ -21,8 +21,8 @@ app.get('/', (req, res) => {
 	// getJobListings(title, location);
 	console.log(title);
 	console.log(location);
-	console.log(scraper(title, location));
-});
+	scraper.getJobListings(title, location);
+})
 
 // applications
 app.get('/apps', (req, res) => {
