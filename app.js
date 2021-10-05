@@ -19,7 +19,8 @@ app.post('/', (req, res) => {
 	// getJobListings(title, location);
 	async function getData(title, location){
 		await scraper.getJobListings(title, location);
-		res.render('index', { title:"Hire.me", jobs: scraper.jobs });
+		res.send(scraper.jobs);
+		console.log(req.body);
 	}
 
 	// get params for scraper if they exist
