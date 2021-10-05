@@ -11,18 +11,24 @@ app.use(express.static(path + '/public'));
 // Set Views
 app.set('view engine', 'ejs');
 
+app.use(express.json());
+app.use(express.urlencoded());
+
 // home
-app.get('/', (req, res) => {
-	// get params for scraper
-	let title = req.query.title;
-	let location = req.query.location;
-
+app.post('/', (req, res) => {
 	// getJobListings(title, location);
-	async function getData(){
+	async function getData(title, location){
 		await scraper.getJobListings(title, location);
+		res.render('index', { title:"Hire.me", jobs: scraper.jobs });
 	}
-	getData();
 
+	// get params for scraper if they exist
+	let title = req.body.title;
+	let location = req.body.location;
+	getData(title, location);
+})
+
+app.get('/', (req, res) => {
 	res.render('index', { title:"Hire.me", jobs:scraper.jobs });
 })
 
