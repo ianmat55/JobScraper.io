@@ -5,6 +5,11 @@ const path = __dirname;
 
 const port = process.env.port || 3000
 
+const cors = require('cors');
+app.use(cors({
+	origin: 'https://google.com/'
+}));
+
 // Static Files
 app.use(express.static(path + '/public'));
 

@@ -1,9 +1,9 @@
-
+const allOrigin = 'https://api.allorigins.win/get?url=';
 const jobs = {};
 
 //generate a url from a position and location
 const templateURL = (position, location) => {
-	let url = `https://www.indeed.com/jobs?q=${position}&l=${location}`
+	let url = `https://www.indeed.com/jobs?q=${position}&l=${location}`;
 	return url;
 }
 
@@ -11,11 +11,15 @@ const templateURL = (position, location) => {
 // response = {data, status, statusText, headers, config} 
 async function getJobListings(position, location) {
 
-	//if using jQuery, recommended that jQuery func is used only. Forget about XMLHttpRequest
+	// if using jQuery, recommended that jQuery func is used only. Forget about XMLHttpRequest
 
 	let url = templateURL(position, location);
 
-	await $.ajax({ url, success: (result) => console.log(result) });
+	// allOrigins request to bypass CORS
+	await $.getJSON(allOrigin + encodeURIComponent(url), (data) => {
+		alert(data.contents);
+	});
+	// await $.ajax({ url, success: (result) => console.log(result) });
 
 	const listingTable =  $('.mosaic-provider-jobcards');
 
@@ -54,16 +58,22 @@ async function getJobListings(position, location) {
 			.text();
 		jobs[i]['date'] = date;
 	});
-
+	console.log(jobs);
 	return jobs;
 };
 
-$(function() {
-	$('#criteria').on('submit', function(e) {
-		e.preventDefault();
-		let data = $('#criteria :input').serializeArray();
-		console.log(data);
-		console.log('success');
-	});
+
+$('#criteria').on('submit', function(e) {
+	e.preventDefault();
+	let data = $('#criteria :input').serializeArray();
+	const title = data[0];
+	const position = data[1];
+	console.log(title, position);
+	
+	let url = templateURL(title.value, position.value);
+	$.getJSON(allOrigin + encodeURIComponent('https://www.indeed.com/jobs?q=developer&l=San%20Francisco%2C%20CA&vjk=468a7d5514c68e29'), (data) => {
+		console.log(data.contents);
 });
+});
+
 
