@@ -12,15 +12,14 @@ app.use(express.static(path + '/public'));
 app.set('view engine', 'ejs');
 
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded({extended:true}));
 
 // home
-app.post('/', (req, res) => {
+app.post('/results', (req, res) => {
 	// getJobListings(title, location);
 	async function getData(title, location){
 		await scraper.getJobListings(title, location);
-		res.send(scraper.jobs);
-		console.log(req.body);
+		res.render('index', { title:"Hire.me", jobs:scraper.jobs });
 	}
 
 	// get params for scraper if they exist
@@ -30,7 +29,8 @@ app.post('/', (req, res) => {
 })
 
 app.get('/', (req, res) => {
-	res.render('index', { title:"Hire.me", jobs:scraper.jobs });
+	jobs = null;
+	res.render('index', { title:"Hire.me", jobs });
 })
 
 // applications
