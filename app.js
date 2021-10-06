@@ -7,7 +7,7 @@ const port = process.env.port || 3000
 
 const cors = require('cors');
 app.use(cors({
-	origin: 'https://google.com/'
+	origin: '*'
 }));
 
 // Static Files

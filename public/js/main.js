@@ -1,4 +1,4 @@
-const allOrigin = 'https://api.allorigins.win/get?url=';
+const crossOrigin = 'https://crossorigin.me/';
 const jobs = {};
 
 //generate a url from a position and location
@@ -13,13 +13,10 @@ async function getJobListings(position, location) {
 
 	// if using jQuery, recommended that jQuery func is used only. Forget about XMLHttpRequest
 
-	let url = templateURL(position, location);
+	let url = crossOrigin + templateURL(position, location);
 
 	// allOrigins request to bypass CORS
-	await $.getJSON(allOrigin + encodeURIComponent(url), (data) => {
-		alert(data.contents);
-	});
-	// await $.ajax({ url, success: (result) => console.log(result) });
+	await $.get(url);
 
 	const listingTable =  $('.mosaic-provider-jobcards');
 
@@ -69,11 +66,7 @@ $('#criteria').on('submit', function(e) {
 	const title = data[0];
 	const position = data[1];
 	console.log(title, position);
-	
-	let url = templateURL(title.value, position.value);
-	$.getJSON(allOrigin + encodeURIComponent('https://www.indeed.com/jobs?q=developer&l=San%20Francisco%2C%20CA&vjk=468a7d5514c68e29'), (data) => {
-		console.log(data.contents);
-});
+	getJobListings('developer', 'san francisco');
 });
 
 
