@@ -12,23 +12,8 @@ app.use(express.static(path + '/public'));
 app.set('view engine', 'ejs');
 
 app.use(express.json());
-app.use(express.urlencoded());
 
 // home
-app.post('/', (req, res) => {
-	// getJobListings(title, location);
-	async function getData(title, location){
-		await scraper.getJobListings(title, location);
-		res.send(scraper.jobs);
-		console.log(req.body);
-	}
-
-	// get params for scraper if they exist
-	let title = req.body.title;
-	let location = req.body.location;
-	getData(title, location);
-})
-
 app.get('/', (req, res) => {
 	res.render('index', { title:"Hire.me", jobs:scraper.jobs });
 })
