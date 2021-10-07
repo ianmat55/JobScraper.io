@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
-const scraper = require('./scraper');
+const indeed = require('./indeed_scraper');
+const linkedin = require('./linkedin_scraper');
 const path = __dirname;
 
 const port = process.env.port || 3000
@@ -18,8 +19,9 @@ app.use(express.urlencoded({extended:true}));
 app.post('/results', (req, res) => {
 	// getJobListings(title, location);
 	async function getData(title, location){
-		await scraper.getJobListings(title, location);
-		res.render('index', { title:"Hire.me", jobs:scraper.jobs });
+		await indeed.getJobListings(title, location);
+		await linkedin.getJobListings(title, location);
+		res.render('index', { title:"Hire.me", indeed:indeed.jobs, linkedin:linkedin.jobs });
 	}
 
 	// get params for scraper if they exist
@@ -30,7 +32,7 @@ app.post('/results', (req, res) => {
 
 app.get('/', (req, res) => {
 	jobs = null;
-	res.render('index', { title:"Hire.me", jobs });
+	res.render('index', { title:"Hire.me", indeed, linkedin });
 })
 
 // applications

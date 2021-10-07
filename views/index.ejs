@@ -16,23 +16,63 @@
 			<label for="ignore"> Are there any companies you want to Exclude </label>
 			<input type="text" name="ignore">
 
-			<input type="submit" class="submit" value="set values" />
+			<input type="submit" class="submit" />
 		</form>
 	</div>
 
 	<!-- Display app listings -->
 	<div class="app-listings">
+		<% if (indeed != null) { %>
 		<table>
-			
+			<thead>
+				<tr>
+					<th> Title </th>
+					<th> Company </th>
+					<!-- <th> Description </th> -->
+					<th> Location </th>
+					<th> Date </th>
+				</tr>	
+			</thead>
+			<tbody>
+				<% Object.keys(indeed).forEach(function (id) { %>
+					<tr>
+						<td> <%-indeed[id]['title'] %> </td>
+						<td> <%-indeed[id]['company'] %> </td>
+						<!-- description -->
+						<td> <%-indeed[id]['location'] %> </td>
+						<td> <%-indeed[id]['posted'] %> </td>
+					</tr>
+				<% }); %>
+			</tbody>	
+		</table>
+		
+		<% } else { %>
+				<h2> No listings to show </h2>
+			<% } %>
+		
+
+		<!-- LINKEDIN -->
+		<table>
+			<thead>
+				<tr>
+					<th> Title </th>
+					<th> Company </th>
+					<th> Location </th>
+					<th> Date </th>
+				</tr>	
+			</thead>
+			<tbody>
+				<% Object.keys(linkedin).forEach(function (id) { %>
+					<tr>
+						<td> <%-linkedin[id]['title'] %> </td>
+						<td> <%-linkedin[id]['company'] %> </td>
+						<td> <%-linkedin[id]['location'] %> </td>
+						<td> <%-linkedin[id]['posted'] %> </td>
+					</tr>
+				<% }); %>
+			</tbody>	
 		</table>
 	</div>
 
-	<% if (jobs != null) { %>
-		<% Object.keys(jobs).forEach(function (job) { %>
-			<h2> <%-job %> </h2>
-		<% }); %>
-	<% } else { %>
-		<h2> No listings to show </h2>
-	<% } %>
 
 	<%- include('./partials/footer.ejs') %>

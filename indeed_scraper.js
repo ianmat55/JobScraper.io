@@ -49,9 +49,8 @@ async function getJobListings(position, location) {
 		const date = $(element)
 			.find('.date')
 			.text();
-		jobs[i]['date'] = date;
+		jobs[i]['posted'] = date;
 	});
-
 	return jobs;
 }
 
