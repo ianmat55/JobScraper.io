@@ -1,8 +1,11 @@
 const express = require('express');
 const app = express();
 const pool = require('./db/dbConfig');
-const indeed = require('./indeed_scraper');
-const linkedin = require('./linkedin_scraper');
+const { body, validationResult } = require('express-validator');
+const indeed = require('./middleware/indeed_scraper');
+const linkedin = require('./middleware/linkedin_scraper');
+const { validateUserSchema } = require('./middleware/formValidation');
+const { registerSchema } = require('./schema/register-schema');
 const path = __dirname;
 
 const port = process.env.port || 3000
@@ -47,9 +50,22 @@ app.get('/login', (req, res) => {
 })
 
 // register
-app.post('/register', (req, res) => {
-	let { username, email, password, password2 } = req.body;
+app.get('/register', (req, res) => {
 	res.render('register', { title: "create account" });
+})
+
+app.post('/register',
+	registerSchema,
+	validateUserSchema,
+	(req, res) => {
+	let { id, email, username, password, password2 } = req.body;
+	console.log({
+		id,
+		email,
+		password,
+		password2,
+		username
+	});
 })
 
 // 404 page
