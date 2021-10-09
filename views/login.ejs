@@ -6,12 +6,15 @@
 		<p id='description'> Hire.me is a ... </p>
 	</div>
 	<div class="login_container">
-		<form id='login'>
-			<label for='username'> username </label>
-			<input type='text' name='username' />
-			<label for='password'> password </label>
-			<input type='text' name='password' />
-			<input type='submit' />
+		<form action='/login' id='login' method='POST'>
+			<label for='username'> Username or Email </label>
+			<input type='text' name='username' required/>
+			<label for='password'> Password </label>
+			<input type='text' name='password' required/>
+			<div>
+				<input type='submit' value='login'/>
+			</div>
+			<a href='/register'> Don't have an account? </a>
 		</form>
 	</div>
 		</form>

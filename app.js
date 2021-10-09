@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const pool = require('./db/index');
+const pool = require('./db/dbConfig');
 const indeed = require('./indeed_scraper');
 const linkedin = require('./linkedin_scraper');
 const path = __dirname;
@@ -14,7 +14,8 @@ app.use(express.static(path + '/public'));
 app.set('view engine', 'ejs');
 
 app.use(express.json());
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({extended:false}));
+
 
 // home
 app.post('/results', (req, res) => {
@@ -22,12 +23,11 @@ app.post('/results', (req, res) => {
 	async function getData(title, location){
 		await indeed.getJobListings(title, location);
 		await linkedin.getJobListings(title, location);
-		res.render('index', { title:"Hire.me", indeed:indeed.jobs, linkedin:linkedin.jobs, user:"IAN" });
+		res.render('index', { title:"Hire.me", indeed:indeed.jobs, linkedin:linkedin.jobs, user:"Ian" });
 	}
 
 	// get params for scraper if they exist
-	let title = req.body.title;
-	let location = req.body.location;
+	let { title, location } = req.body;
 	getData(title, location);
 })
 
@@ -47,7 +47,8 @@ app.get('/login', (req, res) => {
 })
 
 // register
-app.get('/register', (req, res) => {
+app.post('/register', (req, res) => {
+	let { username, email, password, password2 } = req.body;
 	res.render('register', { title: "create account" });
 })
 
