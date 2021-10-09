@@ -4,6 +4,7 @@
 <body>
 	<%- include('./partials/nav.ejs') %>
 
+	<h1> Hello <%= user %> </h1>
 	<!-- Get params for web scraper -->
 	<div class="form container">
 		<form id="criteria" method="POST" action='/results'>
@@ -75,4 +76,4 @@
 	</div>
 
 
-	<%- include('./partials/footer.ejs') %>
+<%- include('./partials/footer.ejs') %>

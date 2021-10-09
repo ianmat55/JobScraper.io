@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const pool = require('./db/index');
 const indeed = require('./indeed_scraper');
 const linkedin = require('./linkedin_scraper');
 const path = __dirname;
@@ -21,7 +22,7 @@ app.post('/results', (req, res) => {
 	async function getData(title, location){
 		await indeed.getJobListings(title, location);
 		await linkedin.getJobListings(title, location);
-		res.render('index', { title:"Hire.me", indeed:indeed.jobs, linkedin:linkedin.jobs });
+		res.render('index', { title:"Hire.me", indeed:indeed.jobs, linkedin:linkedin.jobs, user:"IAN" });
 	}
 
 	// get params for scraper if they exist
@@ -32,12 +33,22 @@ app.post('/results', (req, res) => {
 
 app.get('/', (req, res) => {
 	jobs = null;
-	res.render('index', { title:"Hire.me", indeed, linkedin });
+	res.render('index', { title:"Hire.me", indeed, linkedin, user:"Ian" });
 })
 
 // applications
 app.get('/apps', (req, res) => {
 	res.render('applications', { title: "applications" });
+})
+
+// login
+app.get('/login', (req, res) => {
+	res.render('login', { title: "login" });
+})
+
+// register
+app.get('/register', (req, res) => {
+	res.render('register', { title: "create account" });
 })
 
 // 404 page
