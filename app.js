@@ -5,7 +5,8 @@ const { body, validationResult } = require('express-validator');
 const indeed = require('./middleware/indeed_scraper');
 const linkedin = require('./middleware/linkedin_scraper');
 const { validateUserSchema } = require('./middleware/formValidation');
-const { registerSchema } = require('./schema/register-schema');
+const { registerSchema, loginSchema } = require('./middleware/schema/index');
+const bcrypt = require('bcrypt');
 const path = __dirname;
 
 const port = process.env.port || 3000
@@ -45,27 +46,24 @@ app.get('/apps', (req, res) => {
 })
 
 // login
-app.get('/login', (req, res) => {
+app.get('/users/login', (req, res) => {
 	res.render('login', { title: "login" });
 })
 
 // register
-app.get('/register', (req, res) => {
+app.get('/users/register', (req, res) => {
 	res.render('register', { title: "create account" });
 })
 
-app.post('/register',
+app.post('/users/register',
 	registerSchema,
 	validateUserSchema,
-	(req, res) => {
+	async (req, res) => {
 	let { id, email, username, password, password2 } = req.body;
-	console.log({
-		id,
-		email,
-		password,
-		password2,
-		username
-	});
+
+	//encrypt password
+	let encryptPassword = await bcrypt.hash(password, 10);
+	console.log(encryptPassword);
 })
 
 // 404 page
