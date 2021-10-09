@@ -22,6 +22,10 @@ app.use(express.urlencoded({extended:false}));
 
 
 // home
+app.get('/', (req, res) => {
+	res.render('index', { title:"Hire.me", indeed, linkedin, user:"Ian" });
+})
+
 app.post('/results', (req, res) => {
 	// getJobListings(title, location);
 	async function getData(title, location){
@@ -33,11 +37,6 @@ app.post('/results', (req, res) => {
 	// get params for scraper if they exist
 	let { title, location } = req.body;
 	getData(title, location);
-})
-
-app.get('/', (req, res) => {
-	jobs = null;
-	res.render('index', { title:"Hire.me", indeed, linkedin, user:"Ian" });
 })
 
 // applications
@@ -52,7 +51,8 @@ app.get('/users/login', (req, res) => {
 
 // register
 app.get('/users/register', (req, res) => {
-	res.render('register', { title: "create account" });
+	let errors = null;
+	res.render('register', { title: "create account", errors });
 })
 
 app.post('/users/register',
@@ -63,7 +63,6 @@ app.post('/users/register',
 
 	//encrypt password
 	let encryptPassword = await bcrypt.hash(password, 10);
-	console.log(encryptPassword);
 })
 
 // 404 page

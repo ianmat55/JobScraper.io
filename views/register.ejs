@@ -5,6 +5,14 @@
 		<h1 id='hire.me'> Hire.me </h1>
 		<p id='description'> Hire.me is a ... </p>
 	</div>
+
+	<ul>
+		<% if(errors != null) { %> 
+			<% errors.forEach(error => { %>
+		<li> <%= error['msg'] %> </li>
+		<% }) %> <% } %>
+	</ul>
+
 	<div class="register_container">
 		<form id='register' action='/users/register' method='POST'>
 			<label for='username'> Username </label>
