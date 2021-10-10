@@ -1,5 +1,5 @@
 const { check, body } = require('express-validator');
-const pool = require('../../db/dbConfig');
+const pool = require('../../config/dbConfig');
 
 // register form
 const registerSchema = [
@@ -41,11 +41,5 @@ const registerSchema = [
 			})
 ]
 
-// login form
-const loginSchema = [
-	body('email').isEmail(),
-	body('username').exists({ checkFalsy: true }),
-	body('password').exists({ checkFalsy: true, min:5 }),
-]
 
-module.exports = { registerSchema, loginSchema };
+module.exports = { registerSchema };

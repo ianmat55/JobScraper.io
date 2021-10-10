@@ -1,15 +1,20 @@
 const express = require('express');
 const app = express();
-const pool = require('./db/dbConfig');
+const pool = require('./config/dbConfig');
 const { body, validationResult } = require('express-validator');
 const indeed = require('./middleware/indeed_scraper');
 const linkedin = require('./middleware/linkedin_scraper');
-const { validateUserSchema } = require('./middleware/formValidation');
-const { registerSchema, loginSchema } = require('./middleware/schema/index');
+const { registerSchema } = require('./middleware/schema/index');
 const bcrypt = require('bcrypt');
+const session = require('express-session');
+const flash = require('express-flash');
+const passport = require('passport');
 const path = __dirname;
 
 const port = process.env.port || 3000
+const initializePassport = require('./config/passportConfig');
+
+initializePassport(passport);
 
 // Static Files
 app.use(express.static(path + '/public'));
@@ -17,13 +22,22 @@ app.use(express.static(path + '/public'));
 // Set Views
 app.set('view engine', 'ejs');
 
-app.use(express.json());
+// Middleware
+app.use(session({
+	secret: 'secret',
+	resave: false,
+	saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 app.use(express.urlencoded({extended:false}));
 
 
-// home
+
+// Home
 app.get('/', (req, res) => {
-	res.render('index', { title:"Hire.me", indeed, linkedin, user:"Ian" });
+	res.render('index', { title:"Hire.me", indeed, linkedin, user:req.user.name });
 })
 
 app.post('/results', (req, res) => {
@@ -39,31 +53,66 @@ app.post('/results', (req, res) => {
 	getData(title, location);
 })
 
-// applications
+
+
+// Applications
 app.get('/apps', (req, res) => {
 	res.render('applications', { title: "applications" });
 })
 
-// login
+
+
+
+// Login
 app.get('/users/login', (req, res) => {
 	res.render('login', { title: "login" });
 })
 
-// register
-app.get('/users/register', (req, res) => {
+app.post('/users/login',
+	passport.authenticate('local', {
+		successRedirect: '/',
+		failureRedirect: '/users/login',
+		failureFlash: true
+	}))
+
+
+
+
+// Register
+app.get('/users/register', (req, res, next) => {
 	let errors = null;
 	res.render('register', { title: "create account", errors });
 })
 
 app.post('/users/register',
 	registerSchema,
-	validateUserSchema,
 	async (req, res) => {
-	let { id, email, username, password, password2 } = req.body;
+	
+		// check for errors
+		const errors = validationResult(req);
+		if (!errors.isEmpty()) {
+			console.log(errors.array());
+			res.render('register', { title: 'create account', errors:errors.array() })
+		} else { 
+			// if successful 
+			let { email, username, password } = req.body;
+			// encrypt password
+			let encryptPassword = await bcrypt.hash(password, 10);
+			pool.query(
+				`INSERT INTO users (username, email, password)
+				VALUES ($1, $2, $3)
+				RETURNING id, password`, [username, email, encryptPassword], (err, results) => {
+					if (err) {
+						throw err;
+					}
+					req.flash('success_msg', "Registraion complete, please log in");
+					res.redirect('/users/login');
+			})};
+	})
 
-	//encrypt password
-	let encryptPassword = await bcrypt.hash(password, 10);
-})
+
+
+
 
 // 404 page
 app.use((req, res) => {
