@@ -11,10 +11,10 @@ const flash = require('express-flash');
 const passport = require('passport');
 const path = __dirname;
 
-const port = process.env.port || 3000
 const initializePassport = require('./config/passportConfig');
-
 initializePassport(passport);
+
+const port = process.env.port || 3000
 
 // Static Files
 app.use(express.static(path + '/public'));
@@ -23,6 +23,7 @@ app.use(express.static(path + '/public'));
 app.set('view engine', 'ejs');
 
 // Middleware
+app.use(express.urlencoded({extended:false}));
 app.use(session({
 	secret: 'secret',
 	resave: false,
@@ -31,13 +32,11 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-app.use(express.urlencoded({extended:false}));
-
 
 
 // Home
 app.get('/', (req, res) => {
-	res.render('index', { title:"Hire.me", indeed, linkedin, user:req.user.name });
+	res.render('index', { title:"Hire.me", indeed, linkedin, user:"IAN" });
 })
 
 app.post('/results', (req, res) => {
@@ -64,18 +63,25 @@ app.get('/apps', (req, res) => {
 
 
 // Login
-app.get('/users/login', (req, res) => {
-	res.render('login', { title: "login" });
-})
-
-app.post('/users/login',
+app.post('/users/login', 
 	passport.authenticate('local', {
 		successRedirect: '/',
 		failureRedirect: '/users/login',
 		failureFlash: true
-	}))
+	})
+)
+
+app.get('/users/login', (req, res) => {
+	res.render('login', { title: "login" });
+})
 
 
+// Logout
+app.get('/users/logout', (req, res) => {
+	req.logOut();
+	req.flash('success_msg', 'You have successfully logged out');
+	res.redirect('/users/login');
+})
 
 
 // Register
