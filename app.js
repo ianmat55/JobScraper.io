@@ -34,7 +34,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-
 // Home
 app.get('/', checkNotAuthenticated, (req, res) => {
 	res.render('index', { title:"Hire.me", indeed, linkedin, user:req.user.username });
@@ -53,15 +52,10 @@ app.post('/results', checkNotAuthenticated, (req, res) => {
 	getData(title, location);
 })
 
-
-
 // Applications
 app.get('/apps', checkNotAuthenticated, (req, res) => {
 	res.render('applications', { title: "applications" });
 })
-
-
-
 
 // Login
 app.post('/users/login', 
@@ -76,14 +70,12 @@ app.get('/users/login', checkAuthenticated, (req, res) => {
 	res.render('login', { title: "login" });
 })
 
-
 // Logout
 app.get('/users/logout', (req, res) => {
 	req.logOut();
 	req.flash('success_msg', 'You have successfully logged out');
 	res.redirect('/users/login');
 })
-
 
 // Register
 app.get('/users/register', checkAuthenticated, (req, res, next) => {
@@ -116,10 +108,6 @@ app.post('/users/register',
 					res.redirect('/users/login');
 			})};
 	})
-
-
-
-
 
 // 404 page
 app.use((req, res) => {
