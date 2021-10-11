@@ -12,7 +12,6 @@ const passport = require('passport');
 const path = __dirname;
 
 const initializePassport = require('./config/passportConfig');
-const { request } = require('express');
 initializePassport(passport);
 
 const port = process.env.port || 3000
@@ -39,36 +38,38 @@ app.get('/', checkNotAuthenticated, (req, res) => {
 	res.render('index', { title:"Hire.me", indeed, linkedin, user:req.user.username });
 })
 
-app.post('/results', checkNotAuthenticated, (req, res) => {
-	// getJobListings(title, location);
-	async function getData(title, location){
-		await indeed.getJobListings(title, location);
-		await linkedin.getJobListings(title, location);
-		res.render('index', { title:"Hire.me", indeed:indeed.jobs, linkedin:linkedin.jobs, user:"Ian" });
-	}
-
-	// get params for scraper if they exist
-	let { title, location } = req.body;
-	getData(title, location);
-})
-
 // Applications
-app.get('/apps', checkNotAuthenticated, (req, res) => {
-	res.render('applications', { title: "applications" });
-})
+app.post('/results', checkNotAuthenticated, 
+	(req, res) => {
+		// getJobListings(title, location);
+		async function getData(title, location){
+			await indeed.getJobListings(title, location);
+			await linkedin.getJobListings(title, location);
+			res.render('index', { title:"Hire.me", indeed:indeed.jobs, linkedin:linkedin.jobs, user:"Ian" });
+		}
+
+		// get params for scraper if they exist
+		let { title, location } = req.body;
+		getData(title, location);
+	});
+
+app.get('/results/apps', checkNotAuthenticated, 
+	(req, res) => {
+		res.render('applications', { title: "applications" });
+	});
 
 // Login
-app.post('/users/login', 
-	passport.authenticate('local', {
-		successRedirect: '/',
-		failureRedirect: '/users/login',
-		failureFlash: true
-	})
-)
-
-app.get('/users/login', checkAuthenticated, (req, res) => {
-	res.render('login', { title: "login" });
-})
+app.route('/users/login')
+	.post( 
+		passport.authenticate('local', {
+			successRedirect: '/',
+			failureRedirect: '/users/login',
+			failureFlash: true
+		})
+	)
+	.get(checkAuthenticated, (req, res) => {
+		res.render('login', { title: "login" });
+	});
 
 // Logout
 app.get('/users/logout', (req, res) => {
@@ -78,13 +79,12 @@ app.get('/users/logout', (req, res) => {
 })
 
 // Register
-app.get('/users/register', checkAuthenticated, (req, res, next) => {
-	let errors = null;
-	res.render('register', { title: "create account", errors });
-})
-
-app.post('/users/register',
-	registerSchema,
+app.route('/users/register')
+	.get(checkAuthenticated, (req, res, next) => {
+		let errors = null;
+		res.render('register', { title: "create account", errors });
+	})	
+	.post(registerSchema,
 	async (req, res) => {
 	
 		// check for errors
@@ -107,7 +107,7 @@ app.post('/users/register',
 					req.flash('success_msg', "Registraion complete, please log in");
 					res.redirect('/users/login');
 			})};
-	})
+	});
 
 // 404 page
 app.use((req, res) => {
