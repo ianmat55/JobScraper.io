@@ -12,6 +12,7 @@ const passport = require('passport');
 const path = __dirname;
 
 const initializePassport = require('./config/passportConfig');
+const { request } = require('express');
 initializePassport(passport);
 
 const port = process.env.port || 3000
@@ -35,11 +36,11 @@ app.use(flash());
 
 
 // Home
-app.get('/', (req, res) => {
-	res.render('index', { title:"Hire.me", indeed, linkedin, user:"IAN" });
+app.get('/', checkNotAuthenticated, (req, res) => {
+	res.render('index', { title:"Hire.me", indeed, linkedin, user:req.user.username });
 })
 
-app.post('/results', (req, res) => {
+app.post('/results', checkNotAuthenticated, (req, res) => {
 	// getJobListings(title, location);
 	async function getData(title, location){
 		await indeed.getJobListings(title, location);
@@ -55,7 +56,7 @@ app.post('/results', (req, res) => {
 
 
 // Applications
-app.get('/apps', (req, res) => {
+app.get('/apps', checkNotAuthenticated, (req, res) => {
 	res.render('applications', { title: "applications" });
 })
 
@@ -71,7 +72,7 @@ app.post('/users/login',
 	})
 )
 
-app.get('/users/login', (req, res) => {
+app.get('/users/login', checkAuthenticated, (req, res) => {
 	res.render('login', { title: "login" });
 })
 
@@ -85,7 +86,7 @@ app.get('/users/logout', (req, res) => {
 
 
 // Register
-app.get('/users/register', (req, res, next) => {
+app.get('/users/register', checkAuthenticated, (req, res, next) => {
 	let errors = null;
 	res.render('register', { title: "create account", errors });
 })
@@ -128,3 +129,18 @@ app.use((req, res) => {
 app.listen(port, () => {
 	console.log('listening for requests on port 3000...')
 });
+
+function checkAuthenticated(req, res, next) {
+	if (req.isAuthenticated()) {
+		return res.redirect('/');
+	}
+	next();
+};
+
+function checkNotAuthenticated(req, res, next) {
+	if (req.isAuthenticated()) {
+		return next();
+	} else {
+		res.redirect('/users/login');
+	}
+};
