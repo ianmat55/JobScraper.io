@@ -5,21 +5,6 @@
 	<%- include('./partials/nav.ejs') %>
 
 	<h1> Hello <%= user.charAt(0).toUpperCase() + user.slice(1) %> </h1>
-	<!-- Get params for web scraper -->
-	<div class="form container">
-		<form id="criteria" method="POST" action='/results'>
-			<label for="title"> Enter a Job Title or keywords </label>
-			<input type="text" name="title" />
-
-			<label for="location"> Enter a Location </label>
-			<input type="text" name="location" />
-
-			<label for="ignore"> Are there any companies you want to Exclude </label>
-			<input type="text" name="ignore">
-
-			<input type="submit" class="submit" />
-		</form>
-	</div>
 
 	<!-- Display app listings -->
 	<div class="app-listings">
@@ -54,14 +39,6 @@
 
 		<!-- LINKEDIN -->
 		<table>
-			<thead>
-				<tr>
-					<th> Title </th>
-					<th> Company </th>
-					<th> Location </th>
-					<th> Date </th>
-				</tr>	
-			</thead>
 			<tbody>
 				<% Object.keys(linkedin).forEach(function (id) { %>
 					<tr>
@@ -74,6 +51,5 @@
 			</tbody>	
 		</table>
 	</div>
-
 
 <%- include('./partials/footer.ejs') %>

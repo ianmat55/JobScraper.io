@@ -1,10 +1,50 @@
-<nav>
-	<div class="site-title">
-		<a href="/"> <h1> Hire.me </h1> </a>
+
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="/">Hire.me</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				<li class="nav-item">
+			    	<a class="nav-link active" aria-current="page" href="/">Home</a>
+				</li>
+				<li class="nav-item">
+			  		<a class="nav-link" href="/results/apps"> Manage Apps </a>
+				</li>
+		    </ul>
+		    <<!-- OFF CANVAS -->
+
+			<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" 
+					aria-controls="offcanvasRight">Toggle right offcanvas</button>
+			<button> <a class="nav-link" href="/users/logout"> Logout </a> </button>
+		</div>
 	</div>
-	<ul>
-		<li> <a href="/"> Home </a> </li>
-		<li> <a href="/apps"> Manage Apps </a> </li>
-	</ul>
-	<a href="/users/logout"> Logout </a>
 </nav>
+
+
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 id="offcanvasRightLabel">Offcanvas right</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+	<!-- Get params for web scraper -->
+	<div class="form container">
+		<form id="criteria" method="POST" action='/results'>
+			<label for="title"> Enter a Job Title or keywords </label>
+			<input type="text" name="title" />
+
+			<label for="location"> Enter a Location </label>
+			<input type="text" name="location" />
+
+			<label for="ignore"> Are there any companies you want to Exclude </label>
+			<input type="text" name="ignore">
+
+			<input type="submit" class="submit" />
+		</form>
+	</div>
+  </div>
+</div>
