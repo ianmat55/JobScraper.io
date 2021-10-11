@@ -1,20 +1,28 @@
+// Express base
 const express = require('express');
 const app = express();
+const path = __dirname;
+const port = process.env.port || 3000
+
+// Postgress db
 const pool = require('./config/dbConfig');
+
+// Form Validation and password encrypt
 const { body, validationResult } = require('express-validator');
-const indeed = require('./middleware/indeed_scraper');
-const linkedin = require('./middleware/linkedin_scraper');
 const { registerSchema } = require('./middleware/schema/index');
 const bcrypt = require('bcrypt');
+
+// Scrapers
+const indeed = require('./middleware/indeed_scraper');
+const linkedin = require('./middleware/linkedin_scraper');
+
+// Session
 const session = require('express-session');
 const flash = require('express-flash');
 const passport = require('passport');
-const path = __dirname;
 
 const initializePassport = require('./config/passportConfig');
 initializePassport(passport);
-
-const port = process.env.port || 3000
 
 // Static Files
 app.use(express.static(path + '/public'));
