@@ -4,7 +4,7 @@
   "description": "scrape job boards such as indeed or linkedin for jr dev jobs and send them to me",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --coverage"
   },
   "author": "",
   "license": "ISC",
@@ -22,6 +22,7 @@
     "express-session": "^1.17.2",
     "express-validator": "^6.12.2",
     "helmet": "^4.6.0",
+    "jest": "^27.2.5",
     "passport": "^0.5.0",
     "passport-local": "^1.0.0",
     "pg": "^8.7.1"
