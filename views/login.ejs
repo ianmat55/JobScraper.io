@@ -1,37 +1,40 @@
 <%- include('./partials/head.ejs') %>
 
 <body>
-	<div class="hero">
-		<h1 id='hire.me'> Hire.me </h1>
-		<p id='description'> Hire.me is a ... </p>
-	</div>
-	<div class="login_container">
-		<h1> Login </h1>
+	<div class='hero-body text-center'>
+		<div class="hero">
+			<h1 id='hire.me'> Hire.me </h1>
+			<p id='description'> Hire.me is a ... </p>
+		</div>
+		<div class="login-container">
+			<h1> Login </h1>
 
-		<ul>
-		<% if(messages.success_msg) { %>
-			<li> <%= messages.success_msg %> </li>
-		<% } %>
-		</ul>
+			<ul>
+			<% if(messages.success_msg) { %>
+				<li> <%= messages.success_msg %> </li>
+			<% } %>
+			</ul>
 
-		<ul>
-		<% if(messages.error) { %>
-			<li> <%= messages.error %> </li>
-		<% } %>
-		</ul>
+			<ul>
+			<% if(messages.error) { %>
+				<li> <%= messages.error %> </li>
+			<% } %>
+			</ul>
 
-		<form action='/users/login' id='login' method='POST'>
-			<label for='email'> Email </label>
-			<input type='email' name='email' required/>
-			<label for='password'> Password </label>
-			<input type='text' name='password' required/>
-			<div>
-				<input type='submit' value='login'/>
-			</div>
-			<a href='/users/register'> Don't have an account? </a>
-		</form>
-	</div>
-		</form>
+			<form action='/users/login' method="POST">
+				<div class="mb-3">
+					<input type="email" class="form-control" id="formGroupExampleInput" placeholder="Enter email" name='email' required />
+				</div>
+				<div class="mb-3">
+					<input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Enter Password" name='password' required />
+				</div>
+				<div class='d-grid gap-2'>
+					<input class='btn btn-info' type='submit' value='login'/>
+				</div>
+				<hr>
+				<a class='reg-link' href='/users/register'> Don't have an account? </a>
+			</form>
+		</div>
 	</div>
 
 <%- include('./partials/footer.ejs') %>

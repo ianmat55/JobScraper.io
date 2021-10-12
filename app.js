@@ -36,6 +36,8 @@ app.use(session({
 	secret: 'secret',
 	resave: false,
 	saveUninitialized: false
+	// default session store using memorey allocated to this app
+	// does not persist in db
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -75,16 +77,18 @@ app.route('/users/login')
 			failureFlash: true
 		})
 	)
-	.get(checkAuthenticated, (req, res) => {
-		res.render('login', { title: "login" });
-	});
+	.get(checkAuthenticated, 
+		(req, res) => {
+			res.render('login', { title: "login" });
+		});
 
 // Logout
-app.get('/users/logout', (req, res) => {
-	req.logOut();
-	req.flash('success_msg', 'You have successfully logged out');
-	res.redirect('/users/login');
-})
+app.get('/users/logout', 
+	(req, res) => {
+		req.logOut();
+		req.flash('success_msg', 'You have successfully logged out');
+		res.redirect('/users/login');
+	})
 
 // Register
 app.route('/users/register')
@@ -93,29 +97,28 @@ app.route('/users/register')
 		res.render('register', { title: "create account", errors });
 	})	
 	.post(registerSchema,
-	async (req, res) => {
-	
-		// check for errors
-		const errors = validationResult(req);
-		if (!errors.isEmpty()) {
-			console.log(errors.array());
-			res.render('register', { title: 'create account', errors:errors.array() })
-		} else { 
-			// if successful 
-			let { email, username, password } = req.body;
-			// encrypt password
-			let encryptPassword = await bcrypt.hash(password, 10);
-			pool.query(
-				`INSERT INTO users (username, email, password)
-				VALUES ($1, $2, $3)
-				RETURNING id, password`, [username, email, encryptPassword], (err, results) => {
-					if (err) {
-						throw err;
-					}
-					req.flash('success_msg', "Registraion complete, please log in");
-					res.redirect('/users/login');
-			})};
-	});
+		async (req, res) => {
+			// check for errors
+			const errors = validationResult(req);
+			if (!errors.isEmpty()) {
+				console.log(errors.array());
+				res.render('register', { title: 'create account', errors:errors.array() })
+			} else { 
+				// if successful 
+				let { email, username, password } = req.body;
+				// encrypt password
+				let encryptPassword = await bcrypt.hash(password, 10);
+				pool.query(
+					`INSERT INTO users (username, email, password)
+					VALUES ($1, $2, $3)
+						RETURNING id, password`, [username, email, encryptPassword], (err, results) => {
+						if (err) {
+							throw err;
+						}
+						req.flash('success_msg', "Registraion complete, please log in");
+						res.redirect('/users/login');
+				})};
+		});
 
 // 404 page
 app.use((req, res) => {
@@ -126,6 +129,8 @@ app.listen(port, () => {
 	console.log('listening for requests on port 3000...')
 });
 
+
+// Check if logged in functions 
 function checkAuthenticated(req, res, next) {
 	if (req.isAuthenticated()) {
 		return res.redirect('/');

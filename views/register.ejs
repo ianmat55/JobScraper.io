@@ -1,28 +1,28 @@
 <%- include('./partials/head.ejs') %>
 
 <body>
-	<div class="hero">
-		<h1 id='hire.me'> Hire.me </h1>
-		<p id='description'> Hire.me is a ... </p>
-	</div>
-
 	<ul>
 		<% if(errors != null) { %> 
 			<% errors.forEach(error => { %>
 		<li> <%= error['msg'] %> </li>
 		<% }) %> <% } %>
 	</ul>
-
-	<div class="register_container">
+	<div class="text-center register_container reg-body">
+		<h1> Register </h1>
 		<form id='register' action='/users/register' method='POST'>
-			<label for='username'> Username </label>
-			<input id='name' type='text' name='username' required/>
-			<label for='email'> Email </label>
-			<input id='email' type='text' name='email' required/>
-			<label for='password'> Password </label>
-			<input id='password' type='text' name='password' required/>
-			<label for='password2'> Confirm Passord </label>
-			<input id='password2' type='text' name='password2' required/>
+			<div class='form-floating'>
+				<input id='floatingInput' type='text' name='username' placeholder='Username' required/> 
+			</div>
+
+			<div class='form-floating'> 
+				<input id='floatingInput' type='text' name='email' placeholder='Email' required/>
+			</div>
+			<div class='form-floating'> 
+				<input id='floatingInput' type='text' name='password' placeholder='Password' required/>
+			</div>
+			<div class='form-floating'> 
+				<input id='floatingInput' type='text' name='password2' placeholder='Confirm Password' required/>
+			</div>
 			<div>
 				<input type='submit' value="Register"/>
 			</div>
