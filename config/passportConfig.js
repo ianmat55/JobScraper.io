@@ -35,6 +35,7 @@ function initialize(passport) {
 		usernameField: 'email',
 		passwordField: 'password'
 	}, authenticateUser));
+	
 	passport.serializeUser((user, done) => done(null, user.id)); // serializes user to store into session as an id
 	passport.deserializeUser((id, done) => {  // deserializes
 		pool.query (

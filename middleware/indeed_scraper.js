@@ -19,6 +19,12 @@ async function getJobListings(position, location, length, remove) {
 	// can use .text(), .html(), .find(), children(), parent() on object
 	// scraping id, title, company, location, description, link, date
 	listingTable.find('.result').each((i, element) => {
+
+		// sets length of list
+		if (i>=length) {
+			return jobs;
+		};
+
 		jobs[i] = {};
 
 		const title = $(element)
@@ -55,6 +61,6 @@ async function getJobListings(position, location, length, remove) {
 	return jobs;
 }
 
-// getJobListings('junior developer', 'daly city, CA');
+// getJobListings('junior developer', 'daly city, CA', 5);
 
 module.exports = { getJobListings, templateURL, jobs };

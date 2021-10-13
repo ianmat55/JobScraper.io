@@ -52,9 +52,9 @@ app.get('/', checkNotAuthenticated, (req, res) => {
 app.post('/results', checkNotAuthenticated, 
 	(req, res) => {
 		// getJobListings(title, location);
-		async function getData(title, location){
-			await indeed.getJobListings(title, location);
-			await linkedin.getJobListings(title, location);
+		async function getData(title, location, length){
+			await indeed.getJobListings(title, location, 5);
+			await linkedin.getJobListings(title, location, 5);
 			res.render('index', { title:"Hire.me", indeed:indeed.jobs, linkedin:linkedin.jobs, user:"Ian" });
 		}
 
@@ -125,11 +125,6 @@ app.use((req, res) => {
 	res.render('404', { title: 404 });
 })
 
-app.listen(port, () => {
-	console.log('listening for requests on port 3000...')
-});
-
-
 // Check if logged in functions 
 function checkAuthenticated(req, res, next) {
 	if (req.isAuthenticated()) {
@@ -145,3 +140,5 @@ function checkNotAuthenticated(req, res, next) {
 		res.redirect('/users/login');
 	}
 };
+
+module.exports = app;

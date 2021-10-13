@@ -3,6 +3,8 @@ const linkedin = require('../../middleware/linkedin_scraper');
 
 const dummy_title = 'junior developer';
 const dummy_location = 'daly city, CA';
+const length = 5;
+const remove = ['revature'];
 
 // Indeed
 test('returns correct url format', () => {
@@ -10,7 +12,7 @@ test('returns correct url format', () => {
 });
 
 test('returns object', async () => {
-	await indeed.getJobListings('junior developer', 'daly city');
+	await indeed.getJobListings(dummy_title, dummy_location, length, remove);
 	
 	let object = indeed.jobs[1];
 	let keys = Object.keys(object);
@@ -21,13 +23,40 @@ test('returns object', async () => {
 	
 });
 
+test('number of jobs matches length param', async () => {
+	await indeed.getJobListings(dummy_title, dummy_location, length, remove);
+
+	let listingLength = Object.keys(indeed.jobs).length;
+	expect(listingLength).toBe(length);
+});
+
+test('job listings excludes specified companies', async () => {
+	await indeed.getJobListings(dummy_title, dummy_location, length, remove);
+
+	// inject mock object to test removes
+	indeed.jobs['test']={};
+	indeed.jobs['test']['company'] = 'revature';
+
+	let object = indeed.jobs;
+	let keys = Object.values(object);
+
+	for (const exiled of remove) {
+		console.log(exiled);
+		keys.forEach((key) => {
+			// let company = key['company'].toLowerCase();
+			console.log(key['company'].toLowerCase());
+			expect(key['company'].toLowerCase()).not.toBe(exiled.toLowerCase());
+		})
+	}
+});
+
 // Linkedin
 test('returns correct url format', () => {
-	expect(linkedin.templateURL(dummy_title, dummy_location)).toBe(`https://www.linkedin.com/jobs/search?keywords=${dummy_title}&location=${dummy_location}`);
+	expect(linkedin.templateURL(dummy_title, dummy_location, length, remove)).toBe(`https://www.linkedin.com/jobs/search?keywords=${dummy_title}&location=${dummy_location}`);
 });
 
 test('returns object', async () => {
-	await linkedin.getJobListings('junior developer', 'daly city');
+	await linkedin.getJobListings(dummy_title, dummy_location, length, remove);
 	
 	let object = linkedin.jobs[1];
 	let keys = Object.keys(object);
@@ -36,4 +65,11 @@ test('returns object', async () => {
 		expect(titles.includes(key));
 	});
 	
+});
+
+test('number of jobs matches length param', async () => {
+	await linkedin.getJobListings(dummy_title, dummy_location, length, remove);
+
+	let listingLength = Object.keys(linkedin.jobs).length;
+	expect(listingLength).toBe(length);
 });

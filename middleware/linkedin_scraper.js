@@ -9,7 +9,7 @@ const templateURL = (position, location) => {
 	return url;
 }
 
-async function getJobListings(position, location, length, remove) {
+async function getJobListings(position, location, length) {
 	const { data } = await axios.get(templateURL(position, location));
 	const $ = cheerio.load(data);
 	const listingTable =  $('.jobs-search__results-list');
@@ -18,14 +18,11 @@ async function getJobListings(position, location, length, remove) {
 	// scraping id, title, company, location, description, link, date
 	listingTable.find('.base-card').each((i, element) => {
 
-		jobs[i] = {};
+		if (i>=length) {
+			return jobs;
+		};
 
-		const title = $(element)
-			.find('h3')
-			.text()
-			.trim()
-			.replace(/(\r\n|\n|\r)/gm, "");
-		jobs[i]['title'] = title;
+		jobs[i] = {};
 
 		const company = $(element)
 			.find('h4')
@@ -33,6 +30,13 @@ async function getJobListings(position, location, length, remove) {
 			.trim()
 			.replace(/(\r\n|\n|\r)/gm, "");
 		jobs[i]['company'] = company;
+
+		const title = $(element)
+			.find('h3')
+			.text()
+			.trim()
+			.replace(/(\r\n|\n|\r)/gm, "");
+		jobs[i]['title'] = title;
 
 		// const description = $(element)
 		// 	.find('h3')
@@ -67,9 +71,8 @@ async function getJobListings(position, location, length, remove) {
 
 		
 	});
-	return jobs;
-}
+};
 
-// getJobListings('junior developer', 'daly city, CA');
+// getJobListings('junior developer', 'daly city, CA', 5);
 
 module.exports = { getJobListings, templateURL, jobs };
