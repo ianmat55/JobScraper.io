@@ -18,13 +18,14 @@
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-flash": "^0.0.2",
-    "express-rate-limit": "^5.4.0",
     "express-session": "^1.17.2",
     "express-validator": "^6.12.2",
-    "helmet": "^4.6.0",
     "jest": "^27.2.5",
     "passport": "^0.5.0",
     "passport-local": "^1.0.0",
     "pg": "^8.7.1"
+  },
+  "devDependencies": {
+    "supertest": "^6.1.6"
   }
 }

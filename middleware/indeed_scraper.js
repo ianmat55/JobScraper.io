@@ -11,7 +11,7 @@ const templateURL = (position, location) => {
 
 // axios response element schema
 // response = {data, status, statusText, headers, config} 
-async function getJobListings(position, location) {
+async function getJobListings(position, location, length, remove) {
 	const { data } = await axios.get(templateURL(position, location));
 	const $ = cheerio.load(data);
 	const listingTable =  $('.mosaic-provider-jobcards');
@@ -51,7 +51,10 @@ async function getJobListings(position, location) {
 			.text();
 		jobs[i]['posted'] = date;
 	});
+	
 	return jobs;
 }
+
+// getJobListings('junior developer', 'daly city, CA');
 
 module.exports = { getJobListings, templateURL, jobs };

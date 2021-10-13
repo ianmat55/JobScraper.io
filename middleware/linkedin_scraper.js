@@ -5,11 +5,11 @@ const jobs = {};
 
 //generate a url from a position and location
 const templateURL = (position, location) => {
-	let url = `https://linkedin.com/jobs/search?keywords=${position}&location=${location}`
+	let url = `https://www.linkedin.com/jobs/search?keywords=${position}&location=${location}`
 	return url;
 }
 
-async function getJobListings(position, location) {
+async function getJobListings(position, location, length, remove) {
 	const { data } = await axios.get(templateURL(position, location));
 	const $ = cheerio.load(data);
 	const listingTable =  $('.jobs-search__results-list');
@@ -69,5 +69,7 @@ async function getJobListings(position, location) {
 	});
 	return jobs;
 }
+
+// getJobListings('junior developer', 'daly city, CA');
 
 module.exports = { getJobListings, templateURL, jobs };
