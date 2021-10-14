@@ -52,3 +52,17 @@
 	padding: 9px 0;
 }
 
+td {
+	padding: 5px;
+}
+
+.row {
+	display: flex;
+	gap: 30px;
+	background-color: gray;
+}
+
+.container {
+	padding: 60px;
+	max-width: 1140px !important;
+}

@@ -9,7 +9,7 @@ const templateURL = (position, location) => {
 	return url;
 }
 
-async function getJobListings(position, location, length, exclude) {
+async function getJobListings(position, location, length, exclude=['Revature']) {
 	const { data } = await axios.get(templateURL(position, location));
 	const $ = cheerio.load(data);
 	const listingTable =  $('.jobs-search__results-list'); // class name that holds the listings
@@ -48,11 +48,6 @@ async function getJobListings(position, location, length, exclude) {
 			.trim()
 			.replace(/(\r\n|\n|\r)/gm, "");
 
-		// const icon = $(element)
-		// 	.find('img')
-		//	.trim()
-		// 	.attr('href');
-
 		const posted = $(element) //date posted
 			.find('time')
 			.text()
@@ -70,7 +65,6 @@ async function getJobListings(position, location, length, exclude) {
 			jobs[i]['location'] = location;
 			jobs[i]['posted'] = posted; 
 			// jobs[i]['description'] = description;
-			// jobs[i]['icon'] = icon;
 			count ++;
 		}
 	}

@@ -1,12 +1,6 @@
 <%- include('./partials/head.ejs') %>
 
 <body>
-	<ul>
-		<% if(errors != null) { %> 
-			<% errors.forEach(error => { %>
-		<li> <%= error['msg'] %> </li>
-		<% }) %> <% } %>
-	</ul>
 	<div class="text-center register_container reg-body">
 		<h1> Register </h1>
 		<form id='register' action='/users/register' method='POST'>

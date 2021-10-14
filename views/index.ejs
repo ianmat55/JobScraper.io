@@ -6,56 +6,66 @@
 
 	<h1> Hello <%= user.charAt(0).toUpperCase() + user.slice(1) %> </h1>
 
-	<div class="container-md">
-		<!-- Display app listings -->
-		<% if (indeed != null) { %>
+	<div class="container">
+	<!-- Display app listings -->
+	<% if (indeed == null || linkedin == null) { %>
+		<h2> No listings to show </h2>
+	</div>
+
+	<% } else { %>
 		<div class="row">
-		  <div class="col">
-				<h3> Indeed </h3>
-				<table>
-					<thead>
-						<tr>
-							<th> Title </th>
-							<th> Company </th>
-							<!-- <th> Description </th> -->
-							<th> Location </th>
-							<!-- <th> Date </th> -->
-						</tr>	
-					</thead>
-					<tbody>
-						<% Object.keys(indeed).forEach(function (id) { %>
+			<div class="col">
+					<h3> Indeed </h3>
+					<table>
+						<thead>
 							<tr>
-								<td> <%-indeed[id]['title'] %> </td>
-								<td> <%-indeed[id]['company'] %> </td>
-								<!-- description -->
-								<td> <%-indeed[id]['location'] %> </td>
+								<th> Title </th>
+								<th> Company </th>
+								<!-- <th> Description </th> -->
+								<th> Location </th>
+								<!-- <th> Date </th> -->
+							</tr>	
+						</thead>
+						<tbody>
+							<% Object.keys(indeed).forEach(function (id) { %>
+								<tr>
+									<td> <%-indeed[id]['title'] %> </td>
+									<td> <%-indeed[id]['company'] %> </td>
+									<!-- description -->
+									<td> <%-indeed[id]['location'] %> </td>
+									<!-- date posted -->
+								</tr>
+							<% }); %>
+						</tbody>	
+					</table>
+			</div>
+			<div class="col">
+				<!-- LINKEDIN -->
+					<h3> Linkedin </h3>
+					<table>
+						<thead>
+							<tr>
+								<th> Title </th>
+								<th> Company </th>
+								<!-- <th> Description </th> -->
+								<th> Location </th>
+								<!-- <th> Date </th> -->
+							</tr>	
+						</thead>
+						<tbody>
+						<% Object.keys(linkedin).forEach(function (id) { %>
+							<tr>
+								<td> <%-linkedin[id]['title'] %> </td>
+								<td> <%-linkedin[id]['company'] %> </td>
+								<td> <%-linkedin[id]['location'] %> </td>
 								<!-- date posted -->
 							</tr>
 						<% }); %>
-					</tbody>	
-				</table>
-		  </div>
-		  <div class="col">
-			<!-- LINKEDIN -->
-				<h3> Linkedin </h3>
-				<table>
-				<tbody>
-				<% Object.keys(linkedin).forEach(function (id) { %>
-					<tr>
-						<td> <%-linkedin[id]['title'] %> </td>
-						<td> <%-linkedin[id]['company'] %> </td>
-						<td> <%-linkedin[id]['location'] %> </td>
-						<!-- date posted -->
-					</tr>
-				<% }); %>
-				</tbody>	
-				</table>
-		  </div>
+						</tbody>	
+					</table>
+			</div>
 		</div>
-		<% } else { %>
-			<h2> No listings to show </h2>
 		<% } %>
-	  	</div>
 	</div>
 	
 <%- include('./partials/footer.ejs') %>

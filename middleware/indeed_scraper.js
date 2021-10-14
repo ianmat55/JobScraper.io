@@ -9,8 +9,6 @@ const templateURL = (position, location) => {
 	return url;
 }
 
-// set job object
-
 async function getJobListings(position, location, length, exclude) {
 	const { data } = await axios.get(templateURL(position, location));
 	const $ = cheerio.load(data);

@@ -8,20 +8,11 @@ const pool = require('./config/dbConfig');
 
 // Form Validation and password encrypt
 const { body, validationResult } = require('express-validator');
-const { registerSchema } = require('./middleware/schema/index');
-const bcrypt = require('bcrypt');
 
 // Scrapers
 const indeed = require('./middleware/indeed_scraper');
 const linkedin = require('./middleware/linkedin_scraper');
 
-// Session
-const session = require('express-session');
-const flash = require('express-flash');
-const passport = require('passport');
-
-const initializePassport = require('./config/passportConfig');
-initializePassport(passport);
 
 // Static Files
 app.use(express.static(path + '/public'));
@@ -31,32 +22,21 @@ app.set('view engine', 'ejs');
 
 // Middleware
 app.use(express.urlencoded({extended:false}));
-app.use(session({
-	secret: 'secret',
-	resave: false,
-	saveUninitialized: false
-	// default session store using memorey allocated to this app
-	// does not persist in db
-}));
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(flash());
 
 // Home
-app.get('/', checkNotAuthenticated,
+app.get('/',
 	(req, res) => {
-		res.render('index', { title:"Hire.me", indeed, linkedin, user:req.user.username });
+		res.render('index', { title:"Hire.me", indeed: null, linkedin: null, user:'Ian' });
 	});
 
 // Applications
-app.post('/results', checkNotAuthenticated,
+app.post('/results',
 	(req, res) => {
 		// getJobListings(title, location);
 		async function getData(title, location, company){
 			let exclude = ['revature'];
 			await indeed.getJobListings(title, location, 5, exclude);
 			await linkedin.getJobListings(title, location, 5, exclude);
-			exclude = ['dummyValue'];
 			res.render('index', { title:"Hire.me", indeed:indeed.jobs, linkedin:linkedin.jobs, user:"Ian" });
 		}
 
@@ -64,25 +44,18 @@ app.post('/results', checkNotAuthenticated,
 		let { title, location, company } = req.body;
 		getData(title, location, company);
 	});
+	
 
-app.get('/results/apps', checkNotAuthenticated, 
+app.get('/results/apps', 
 	(req, res) => {
 		res.render('applications', { title: "applications" });
 	});
 
 // Login
 app.route('/users/login')
-	.post( 
-		passport.authenticate('local', {
-			successRedirect: '/',
-			failureRedirect: '/users/login',
-			failureFlash: true
-		})
-	)
-	.get(checkAuthenticated, 
-		(req, res) => {
-			res.render('login', { title: "login" });
-		});
+	.get((req, res) => {
+		res.render('login', { title: "login" });
+	});
 
 // Logout
 app.get('/users/logout', 
@@ -94,53 +67,14 @@ app.get('/users/logout',
 
 // Register
 app.route('/users/register')
-	.get(checkAuthenticated, (req, res, next) => {
-		let errors = null;
-		res.render('register', { title: "create account", errors });
+	.get((req, res) => {
+		res.render('register', { title: "create account" });
 	})	
-	.post(registerSchema,
-		async (req, res) => {
-			// check for errors
-			const errors = validationResult(req);
-			if (!errors.isEmpty()) {
-				console.log(errors.array());
-				res.render('register', { title: 'create account', errors:errors.array() })
-			} else { 
-				// if successful 
-				let { email, username, password } = req.body;
-				// encrypt password
-				let encryptPassword = await bcrypt.hash(password, 10);
-				pool.query(
-					`INSERT INTO users (username, email, password)
-					VALUES ($1, $2, $3)
-						RETURNING id, password`, [username, email, encryptPassword], (err, results) => {
-						if (err) {
-							throw err;
-						}
-						req.flash('success_msg', "Registraion complete, please log in");
-						res.redirect('/users/login');
-				})};
-		});
 
 // 404 page
 app.use((req, res) => {
 	res.render('404', { title: 404 });
 })
 
-// Check if logged in functions 
-function checkAuthenticated(req, res, next) {
-	if (req.isAuthenticated()) {
-		return res.redirect('/');
-	}
-	next();
-};
-
-function checkNotAuthenticated(req, res, next) {
-	if (req.isAuthenticated()) {
-		return next();
-	} else {
-		res.redirect('/users/login');
-	}
-};
 
 module.exports = app;
