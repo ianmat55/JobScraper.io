@@ -9,7 +9,7 @@ const templateURL = (position, location) => {
 	return url;
 }
 
-async function getJobListings(position, location, length, exclude) {
+async function getJobListings(position, location, length, exclude=["Revature"]) {
 	const { data } = await axios.get(templateURL(position, location));
 	const $ = cheerio.load(data);
 	const listingTable =  $('.jobs-search__results-list'); // class name that holds the listings
@@ -60,25 +60,24 @@ async function getJobListings(position, location, length, exclude) {
 			.replace(/(\r\n|\n|\r)/gm, "");
 		
 
-		if (exclude) {
-			for (const e of exclude) {
-				if (e.toLowerCase() == company.toLowerCase()) {
-					console.log('removed unwanted')
-				} else {
-					jobs[i] = {};
-					jobs[i]['company'] = company;
-					jobs[i]['title'] = title;
-					jobs[i]['link'] = link;
-					jobs[i]['location'] = location;
-					jobs[i]['posted'] = posted; 
-					// jobs[i]['description'] = description;
-					// jobs[i]['icon'] = icon;
-					count ++;
-				}
+		
+		for (const e of exclude) {
+			if (e.toLowerCase() == company.toLowerCase()) {
+				console.log('removed unwanted')
+			} else {
+				jobs[i] = {};
+				jobs[i]['company'] = company;
+				jobs[i]['title'] = title;
+				jobs[i]['link'] = link;
+				jobs[i]['location'] = location;
+				jobs[i]['posted'] = posted; 
+				// jobs[i]['description'] = description;
+				// jobs[i]['icon'] = icon;
+				count ++;
 			}
-		};
-	});
-
+		}
+	}
+);
 	return jobs;
 };
 

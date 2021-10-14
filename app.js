@@ -2,7 +2,6 @@
 const express = require('express');
 const app = express();
 const path = __dirname;
-const port = process.env.port || 3000
 
 // Postgress db
 const pool = require('./config/dbConfig');
@@ -44,9 +43,10 @@ app.use(passport.session());
 app.use(flash());
 
 // Home
-app.get('/', checkNotAuthenticated, (req, res) => {
-	res.render('index', { title:"Hire.me", indeed, linkedin, user:req.user.username });
-})
+app.get('/', checkNotAuthenticated,
+	(req, res) => {
+		res.render('index', { title:"Hire.me", indeed, linkedin, user:req.user.username });
+	});
 
 // Applications
 app.post('/results', checkNotAuthenticated, 
