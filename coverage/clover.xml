@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1634188192709" clover="3.2.0">
-  <project timestamp="1634188192709" name="All files">
-    <metrics statements="65" coveredstatements="64" conditionals="12" coveredconditionals="9" methods="6" coveredmethods="6" elements="83" coveredelements="79" complexity="0" loc="65" ncloc="65" packages="1" files="2" classes="2"/>
+<coverage generated="1634191977942" clover="3.2.0">
+  <project timestamp="1634191977943" name="All files">
+    <metrics statements="64" coveredstatements="63" conditionals="14" coveredconditionals="9" methods="6" coveredmethods="6" elements="84" coveredelements="78" complexity="0" loc="64" ncloc="64" packages="1" files="2" classes="2"/>
     <file name="indeed_scraper.js" path="/home/ian/Desktop/jsProjects/job_board_scraping/middleware/indeed_scraper.js">
-      <metrics statements="34" coveredstatements="34" conditionals="6" coveredconditionals="5" methods="3" coveredmethods="3"/>
+      <metrics statements="33" coveredstatements="33" conditionals="7" coveredconditionals="5" methods="3" coveredmethods="3"/>
       <line num="1" count="1" type="stmt"/>
       <line num="2" count="1" type="stmt"/>
       <line num="4" count="1" type="stmt"/>
@@ -35,12 +35,11 @@
       <line num="60" count="15" type="stmt"/>
       <line num="61" count="15" type="stmt"/>
       <line num="62" count="15" type="stmt"/>
-      <line num="68" count="3" type="stmt"/>
-      <line num="69" count="3" type="stmt"/>
-      <line num="74" count="1" type="stmt"/>
+      <line num="67" count="3" type="stmt"/>
+      <line num="72" count="1" type="stmt"/>
     </file>
     <file name="linkedin_scraper.js" path="/home/ian/Desktop/jsProjects/job_board_scraping/middleware/linkedin_scraper.js">
-      <metrics statements="31" coveredstatements="30" conditionals="6" coveredconditionals="4" methods="3" coveredmethods="3"/>
+      <metrics statements="31" coveredstatements="30" conditionals="7" coveredconditionals="4" methods="3" coveredmethods="3"/>
       <line num="1" count="1" type="stmt"/>
       <line num="2" count="1" type="stmt"/>
       <line num="4" count="1" type="stmt"/>

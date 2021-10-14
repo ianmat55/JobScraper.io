@@ -49,18 +49,20 @@ app.get('/', checkNotAuthenticated,
 	});
 
 // Applications
-app.post('/results', checkNotAuthenticated, 
+app.post('/results', checkNotAuthenticated,
 	(req, res) => {
 		// getJobListings(title, location);
-		async function getData(title, location, length){
-			await indeed.getJobListings(title, location, 5);
-			await linkedin.getJobListings(title, location, 5);
+		async function getData(title, location, company){
+			let exclude = ['revature'];
+			await indeed.getJobListings(title, location, 5, exclude);
+			await linkedin.getJobListings(title, location, 5, exclude);
+			exclude = ['dummyValue'];
 			res.render('index', { title:"Hire.me", indeed:indeed.jobs, linkedin:linkedin.jobs, user:"Ian" });
 		}
 
 		// get params for scraper if they exist
-		let { title, location } = req.body;
-		getData(title, location);
+		let { title, location, company } = req.body;
+		getData(title, location, company);
 	});
 
 app.get('/results/apps', checkNotAuthenticated, 

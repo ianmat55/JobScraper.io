@@ -11,7 +11,7 @@ const templateURL = (position, location) => {
 
 // set job object
 
-async function getJobListings(position, location, length, exclude=['Revature']) {
+async function getJobListings(position, location, length, exclude) {
 	const { data } = await axios.get(templateURL(position, location));
 	const $ = cheerio.load(data);
 	const listingTable =  $('.mosaic-provider-jobcards'); 	// name of the class that holds the listings 
@@ -48,25 +48,23 @@ async function getJobListings(position, location, length, exclude=['Revature']) 
 			.text();
 
 		
-		for (const e of exclude) {
-			if (e.toLowerCase() == company.toLowerCase()) {
-				console.log('removed unwanted')
-			} else {
-				jobs[i] = {};
-				jobs[i]["title"] = title;
-				jobs[i]['company'] = company;
-				jobs[i]['location'] = location;
-				jobs[i]['description'] = description;
-				jobs[i]['link'] = 'https://www.indeed.com' + link;
-				jobs[i]['posted'] = date;
-				count ++;
-			}
+		if (exclude.includes(company.toLowerCase())) {
+			console.log('removed unwanted')
+		} else {
+			jobs[i] = {};
+			jobs[i]["title"] = title;
+			jobs[i]['company'] = company;
+			jobs[i]['location'] = location;
+			jobs[i]['description'] = description;
+			jobs[i]['link'] = 'https://www.indeed.com' + link;
+			jobs[i]['posted'] = date;
+			count ++;
 		}
 	}
 );
 	return jobs;
 }
 
-getJobListings('junior developer', 'daly city, CA', 5);
+// getJobListings('junior developer', 'daly city, CA', 5, ['dummyValue', 'revature']);
 
 module.exports = { getJobListings, templateURL, jobs };
