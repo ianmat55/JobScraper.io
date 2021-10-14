@@ -9,69 +9,79 @@ const templateURL = (position, location) => {
 	return url;
 }
 
-async function getJobListings(position, location, length) {
+async function getJobListings(position, location, length, exclude) {
 	const { data } = await axios.get(templateURL(position, location));
 	const $ = cheerio.load(data);
-	const listingTable =  $('.jobs-search__results-list');
+	const listingTable =  $('.jobs-search__results-list'); // class name that holds the listings
+	let count = 0;
 
-	// base-card is the element class that holds the listings
 	listingTable.find('.base-card').each((i, element) => {
 
-		if (i>=length) {
+		if (count>=length) {
 			return jobs;
 		};
-
-		jobs[i] = {};
 
 		const company = $(element)
 			.find('h4')
 			.text()
 			.trim()
 			.replace(/(\r\n|\n|\r)/gm, "");
-		jobs[i]['company'] = company;
 
 		const title = $(element)
 			.find('h3')
 			.text()
 			.trim()
 			.replace(/(\r\n|\n|\r)/gm, "");
-		jobs[i]['title'] = title;
 
 		// const description = $(element)
 		// 	.find('h3')
 		//	.trim
 		// 	.text();
-		// jobs[i]['description'] = description;
 		
 		const link = $(element)
 			.find('a')
 			.attr('href');
-		jobs[i]['link'] = link;
 
 		const location = $(element)
 			.find('.job-search-card__location')
 			.text()
 			.trim()
 			.replace(/(\r\n|\n|\r)/gm, "");
-		jobs[i]['location'] = location;
 
 		// const icon = $(element)
 		// 	.find('img')
 		//	.trim()
 		// 	.attr('href');
-		// jobs[i]['icon'] = icon;
 
 		const posted = $(element) //date posted
 			.find('time')
 			.text()
 			.trim()
 			.replace(/(\r\n|\n|\r)/gm, "");
-		jobs[i]['posted'] = posted; 
-
 		
+
+		if (exclude) {
+			for (const e of exclude) {
+				if (e.toLowerCase() == company.toLowerCase()) {
+					console.log('removed unwanted')
+				} else {
+					jobs[i] = {};
+					jobs[i]['company'] = company;
+					jobs[i]['title'] = title;
+					jobs[i]['link'] = link;
+					jobs[i]['location'] = location;
+					jobs[i]['posted'] = posted; 
+					// jobs[i]['description'] = description;
+					// jobs[i]['icon'] = icon;
+					count ++;
+				}
+			}
+		};
 	});
+
+	return jobs;
 };
 
-// getJobListings('junior developer', 'daly city, CA', 5);
+// getJobListings('junior developer', 'daly city, CA', 5, ['REvature']);
 
 module.exports = { getJobListings, templateURL, jobs };

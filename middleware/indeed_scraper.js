@@ -14,52 +14,61 @@ const templateURL = (position, location) => {
 async function getJobListings(position, location, length, exclude) {
 	const { data } = await axios.get(templateURL(position, location));
 	const $ = cheerio.load(data);
-	const listingTable =  $('.mosaic-provider-jobcards');
+	const listingTable =  $('.mosaic-provider-jobcards'); 	// name of the class that holds the listings 
 	let count = 0;
 
-	// result is the name of the class that holds the listings 
 	listingTable.find('.result').each((i, element) => {
 
-		if (i>=length) {
+		if (count>=length) {
 			return jobs;
 		};
 
-		jobs[i] = {};
+		const company = $(element)
+			.find('.companyName')
+			.text();
 
 		const title = $(element)
 			.find('.jobTitle')
 			.text();
-		jobs[i]["title"] = title;
-
-		const companyName = $(element)
-			.find('.companyName')
-			.text();
-		jobs[i]['company'] = companyName;
-				
+		
 		const location = $(element)
 			.find('.companyLocation')
 			.text();
-		jobs[i]['location'] = location;
 
 		const description = $(element)
 			.find('.job-snippet')
 			.text()
 			.replace(/(\r\n|\n|\r)/gm, "");
-		jobs[i]['description'] = description;
 
 		const link = $(element)
 			.attr('href');
-		jobs[i]['link'] = 'https://www.indeed.com' + link;
 
 		const date = $(element)
 			.find('.date')
 			.text();
-		jobs[i]['posted'] = date;
+
+		if (exclude) {
+			for (const e of exclude) {
+				if (e.toLowerCase() == company.toLowerCase()) {
+					console.log('removed unwanted')
+				} else {
+					jobs[i] = {};
+					jobs[i]["title"] = title;
+					jobs[i]['company'] = company;
+					jobs[i]['location'] = location;
+					jobs[i]['description'] = description;
+					jobs[i]['link'] = 'https://www.indeed.com' + link;
+					jobs[i]['posted'] = date;
+					count ++;
+				}
+			}
+		};
 	});
+
 	console.log(jobs);
 	return jobs;
 }
 
-getJobListings('junior developer', 'daly city, CA', 5, ['Revature']);
+// getJobListings('junior developer', 'daly city, CA', 5, ['Revature']);
 
 module.exports = { getJobListings, templateURL, jobs };
