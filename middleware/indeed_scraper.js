@@ -3,24 +3,23 @@ const cheerio = require('cheerio');
 
 const jobs = {};
 
-//generate a url from a position and location
+// generate a url from a position and location
 const templateURL = (position, location) => {
 	let url = `https://www.indeed.com/jobs?q=${position}&l=${location}`
 	return url;
 }
 
-// axios response element schema
-// response = {data, status, statusText, headers, config} 
-async function getJobListings(position, location, length, remove) {
+// set job object
+
+async function getJobListings(position, location, length, exclude) {
 	const { data } = await axios.get(templateURL(position, location));
 	const $ = cheerio.load(data);
 	const listingTable =  $('.mosaic-provider-jobcards');
+	let count = 0;
 
-	// can use .text(), .html(), .find(), children(), parent() on object
-	// scraping id, title, company, location, description, link, date
+	// result is the name of the class that holds the listings 
 	listingTable.find('.result').each((i, element) => {
 
-		// sets length of list
 		if (i>=length) {
 			return jobs;
 		};
@@ -57,10 +56,10 @@ async function getJobListings(position, location, length, remove) {
 			.text();
 		jobs[i]['posted'] = date;
 	});
-	
+	console.log(jobs);
 	return jobs;
 }
 
-// getJobListings('junior developer', 'daly city, CA', 5);
+getJobListings('junior developer', 'daly city, CA', 5, ['Revature']);
 
 module.exports = { getJobListings, templateURL, jobs };

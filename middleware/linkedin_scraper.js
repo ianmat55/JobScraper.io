@@ -14,8 +14,7 @@ async function getJobListings(position, location, length) {
 	const $ = cheerio.load(data);
 	const listingTable =  $('.jobs-search__results-list');
 
-	// can use .text(), .html(), .find(), children(), parent() on object
-	// scraping id, title, company, location, description, link, date
+	// base-card is the element class that holds the listings
 	listingTable.find('.base-card').each((i, element) => {
 
 		if (i>=length) {
