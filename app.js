@@ -35,8 +35,10 @@ app.post('/results',
 		// getJobListings(title, location);
 		async function getData(title, location, company){
 			let exclude = ['revature'];
-			await indeed.getJobListings(title, location, 5, exclude);
-			await linkedin.getJobListings(title, location, 5, exclude);
+			if (title) {
+				await indeed.getJobListings(title, location, 5, exclude);
+				await linkedin.getJobListings(title, location, 5, exclude);
+			}
 			res.render('index', { title:"Hire.me", indeed:indeed.jobs, linkedin:linkedin.jobs, user:"Ian" });
 		}
 

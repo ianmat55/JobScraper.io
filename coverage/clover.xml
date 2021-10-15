@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1634233632870" clover="3.2.0">
-  <project timestamp="1634233632870" name="All files">
+<coverage generated="1634267028768" clover="3.2.0">
+  <project timestamp="1634267028769" name="All files">
     <metrics statements="60" coveredstatements="59" conditionals="9" coveredconditionals="7" methods="6" coveredmethods="6" elements="75" coveredelements="72" complexity="0" loc="60" ncloc="60" packages="1" files="2" classes="2"/>
     <file name="indeed_scraper.js" path="/home/ian/Desktop/jsProjects/job_board_scraping/middleware/indeed_scraper.js">
       <metrics statements="31" coveredstatements="31" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
@@ -15,24 +15,24 @@
       <line num="15" count="3" type="stmt"/>
       <line num="16" count="3" type="stmt"/>
       <line num="18" count="3" type="stmt"/>
-      <line num="20" count="30" type="cond" truecount="2" falsecount="0"/>
-      <line num="21" count="12" type="stmt"/>
-      <line num="24" count="18" type="stmt"/>
-      <line num="28" count="18" type="stmt"/>
-      <line num="32" count="18" type="stmt"/>
-      <line num="36" count="18" type="stmt"/>
-      <line num="41" count="18" type="stmt"/>
-      <line num="44" count="18" type="stmt"/>
-      <line num="49" count="18" type="cond" truecount="2" falsecount="0"/>
-      <line num="50" count="8" type="stmt"/>
-      <line num="52" count="10" type="stmt"/>
-      <line num="53" count="10" type="stmt"/>
-      <line num="54" count="10" type="stmt"/>
-      <line num="55" count="10" type="stmt"/>
-      <line num="56" count="10" type="stmt"/>
-      <line num="57" count="10" type="stmt"/>
-      <line num="58" count="10" type="stmt"/>
-      <line num="59" count="10" type="stmt"/>
+      <line num="20" count="45" type="cond" truecount="2" falsecount="0"/>
+      <line num="21" count="18" type="stmt"/>
+      <line num="24" count="27" type="stmt"/>
+      <line num="28" count="27" type="stmt"/>
+      <line num="32" count="27" type="stmt"/>
+      <line num="36" count="27" type="stmt"/>
+      <line num="41" count="27" type="stmt"/>
+      <line num="44" count="27" type="stmt"/>
+      <line num="49" count="27" type="cond" truecount="2" falsecount="0"/>
+      <line num="50" count="12" type="stmt"/>
+      <line num="52" count="15" type="stmt"/>
+      <line num="53" count="15" type="stmt"/>
+      <line num="54" count="15" type="stmt"/>
+      <line num="55" count="15" type="stmt"/>
+      <line num="56" count="15" type="stmt"/>
+      <line num="57" count="15" type="stmt"/>
+      <line num="58" count="15" type="stmt"/>
+      <line num="59" count="15" type="stmt"/>
       <line num="63" count="3" type="stmt"/>
       <line num="68" count="1" type="stmt"/>
     </file>

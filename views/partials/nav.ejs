@@ -27,22 +27,30 @@
 
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
   <div class="offcanvas-header">
-    <h5 id="offcanvasRightLabel">Offcanvas right</h5>
+    <h5 id="offcanvasRightLabel">Settings</h5>
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
 	<!-- Get params for web scraper -->
 	<div class="form container">
 		<form id="criteria" method="POST" action='/results'>
-			<label for="title"> Enter a Job Title or keywords </label>
-			<input type="text" name="title" />
+			<div class="basic-criteria">
+				<label for="title"> Enter a Job Title or keywords </label>
+				<input type="text" name="title" />
 
-			<label for="location"> Enter a Location </label>
-			<input type="text" name="location" />
+				<label for="location"> Enter a Location </label>
+				<input type="text" name="location" />
+			</div>
 
-			<label for="company"> Are there any companies you want to exclude? </label>
-			<input type="text" name="company">
-
+			<div class='exclude'>
+				<ul id="fieldList">
+					<li>
+						<label for="company"> Companies you want to exclude? </label>
+						<input type="text" name="company">
+					</li>
+				</ul>
+				<button id='addMore' class='btn-outline-dark'> + </button>	
+			</div>
 			<input type="submit" class="submit" />
 		</form>
 	</div>

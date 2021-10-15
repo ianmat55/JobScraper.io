@@ -4,6 +4,52 @@
 	box-sizing: border-box;
 }
 
+/* Navbar */
+nav .btn-primary {
+	margin: auto 20px;
+}
+
+/* Settings Section */
+#fieldList {
+	padding: 0;
+	margin: 0;
+	display: inline-block;
+}
+
+#fieldList li {
+	list-style: none;
+}
+
+.basic-criteria {
+	display: flex;
+	flex-direction: column;
+}
+
+#addMore {
+	width: 8%;
+}
+
+.submit {
+	margin-top: 10px;
+}
+
+/* Results Table */
+td {
+	padding: 5px;
+}
+
+.row {
+	display: flex;
+	gap: 30px;
+	background-color: gray;
+}
+
+.container {
+	padding: 60px;
+	max-width: 1140px !important;
+}
+
+/* login form */
 .login-container {
 	display: flex;
 	flex-direction: column;
@@ -50,19 +96,4 @@
 
 .reg-body .form-floating {
 	padding: 9px 0;
-}
-
-td {
-	padding: 5px;
-}
-
-.row {
-	display: flex;
-	gap: 30px;
-	background-color: gray;
-}
-
-.container {
-	padding: 60px;
-	max-width: 1140px !important;
 }

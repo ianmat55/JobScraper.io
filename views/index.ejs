@@ -4,9 +4,8 @@
 <body>
 	<%- include('./partials/nav.ejs') %>
 
-	<h1> Hello <%= user.charAt(0).toUpperCase() + user.slice(1) %> </h1>
-
 	<div class="container">
+	<h1> Hello <%= user.charAt(0).toUpperCase() + user.slice(1) %> </h1>
 	<!-- Display app listings -->
 	<% if (indeed == null || linkedin == null) { %>
 		<h2> No listings to show </h2>
