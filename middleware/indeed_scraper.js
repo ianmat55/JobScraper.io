@@ -46,9 +46,7 @@ async function getJobListings(position, location, length, exclude) {
 			.text();
 
 		
-		if (exclude.includes(company.toLowerCase())) {
-			console.log('removed unwanted')
-		} else {
+		if (!exclude.includes(company.toLowerCase())) {
 			jobs[i] = {};
 			jobs[i]["title"] = title;
 			jobs[i]['company'] = company;

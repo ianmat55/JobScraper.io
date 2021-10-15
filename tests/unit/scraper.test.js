@@ -35,6 +35,7 @@ describe('Indeed scraper functionality', () => {
 		await indeed.getJobListings(dummy_title, dummy_location, length, remove);
 	
 		// inject mock object to test removes. Need to properly mock json which scraper pulls from
+		// redesign scraping function so this can be tested
 	});
 
 });
@@ -61,5 +62,11 @@ describe('Linked in scraper functionality', () => {
 	
 		let listingLength = Object.keys(linkedin.jobs).length;
 		expect(listingLength).toBe(length);
+	});
+
+	test('job listings excludes specified companies', async () => {
+		await indeed.getJobListings(dummy_title, dummy_location, length, remove);
+	
+		// inject mock object to test removes. Need to properly mock json which scraper pulls from
 	});
 });

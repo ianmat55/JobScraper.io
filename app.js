@@ -13,7 +13,6 @@ const { body, validationResult } = require('express-validator');
 const indeed = require('./middleware/indeed_scraper');
 const linkedin = require('./middleware/linkedin_scraper');
 
-
 // Static Files
 app.use(express.static(path + '/public'));
 
@@ -57,7 +56,6 @@ app.post('/results',
 		getData(title, location, exclude);
 	});
 	
-
 app.get('/results/apps', 
 	(req, res) => {
 		res.render('applications', { title: "applications" });
@@ -87,6 +85,5 @@ app.route('/users/register')
 app.use((req, res) => {
 	res.render('404', { title: 404 });
 })
-
 
 module.exports = app;

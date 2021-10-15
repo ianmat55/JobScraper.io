@@ -56,9 +56,7 @@ async function getJobListings(position, location, length, exclude) {
 			.replace(/(\r\n|\n|\r)/gm, "");
 		
 		
-		if (exclude.includes(company.toLowerCase())) {
-			console.log('removed unwanted')
-		} else {
+		if (! exclude.includes(company.toLowerCase())) {
 			jobs[i] = {};
 			jobs[i]['company'] = company;
 			jobs[i]['title'] = title;
@@ -72,7 +70,5 @@ async function getJobListings(position, location, length, exclude) {
 );
 	return jobs;
 };
-
-// getJobListings('junior developer', 'daly city, CA', 5, ['REvature']);
 
 module.exports = { getJobListings, templateURL, jobs };
