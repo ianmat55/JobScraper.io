@@ -33,18 +33,28 @@ app.get('/',
 app.post('/results',
 	(req, res) => {
 		// getJobListings(title, location);
-		async function getData(title, location, company){
-			let exclude = ['revature'];
+		async function getData(title, location, exclude){
+			
 			if (title) {
 				await indeed.getJobListings(title, location, 5, exclude);
 				await linkedin.getJobListings(title, location, 5, exclude);
-			}
+			};
 			res.render('index', { title:"Hire.me", indeed:indeed.jobs, linkedin:linkedin.jobs, user:"Ian" });
 		}
 
 		// get params for scraper if they exist
 		let { title, location, company } = req.body;
-		getData(title, location, company);
+
+		// form validation for excluded company names
+		let exclude = [];
+		if (Array.isArray(company)) {
+			exclude = company.map(name => name.toLowerCase());
+		} else {
+			exclude = ['dummyText'];
+			exclude.push(company.toLowerCase());
+		}
+
+		getData(title, location, exclude);
 	});
 	
 
