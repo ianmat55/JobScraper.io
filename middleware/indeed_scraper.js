@@ -63,4 +63,4 @@ async function getJobListings(position, location, length, exclude) {
 
 // getJobListings('junior developer', 'daly city, CA', 5, ['dummyValue', 'revature']);
 
-module.exports = { getJobListings, templateURL, jobs };
+module.exports = { getJobListings, templateURL };

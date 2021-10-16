@@ -29,14 +29,14 @@ app.get('/',
 	});
 
 // Applications
-app.post('/results',
+app.post('/',
 	(req, res) => {
 		// getJobListings(title, location);
 		async function getData(title, location, exclude){
 			
 			if (title) {
-				await indeed.getJobListings(title, location, 5, exclude);
-				await linkedin.getJobListings(title, location, 5, exclude);
+				const indeed_list = await indeed.getJobListings(title, location, 5, exclude);
+				const linkedin_list = await linkedin.getJobListings(title, location, 5, exclude);
 			};
 			res.render('index', { title:"Hire.me", indeed:indeed.jobs, linkedin:linkedin.jobs, user:"Ian" });
 		}

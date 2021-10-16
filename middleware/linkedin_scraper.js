@@ -71,4 +71,4 @@ async function getJobListings(position, location, length, exclude) {
 	return jobs;
 };
 
-module.exports = { getJobListings, templateURL, jobs };
+module.exports = { getJobListings, templateURL };
