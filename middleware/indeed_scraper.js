@@ -5,7 +5,7 @@ const jobs = {};
 
 // generate a url from a position and location
 const templateURL = (position, location) => {
-	let url = `https://www.indeed.com/jobs?q=${position}&l=${location}`
+	let url = `https://www.indeed.com/jobs?q=${position}&l=${location}&vjk`;
 	return url;
 }
 
@@ -58,6 +58,7 @@ async function getJobListings(position, location, length, exclude) {
 		}
 	}
 );
+	console.log(Object.keys(jobs).length);
 	return jobs;
 }
 
