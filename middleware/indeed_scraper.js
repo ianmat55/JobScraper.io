@@ -58,7 +58,6 @@ async function getJobListings(position, location, length, exclude) {
 		}
 	}
 );
-	console.log(Object.keys(jobs).length);
 	return jobs;
 }
 
