@@ -3,9 +3,16 @@
 <body>
 	<div class="text-center register_container reg-body">
 		<h1> Register </h1>
+		<% if (errors) { %>
+			<ul>
+			<% for (const err of errors) { %>
+				<li> <%- err.msg %> </li>	
+			<% } %>
+			</ul>
+		<% } %>
 		<form id='register' action='/users/register' method='POST'>
 			<div class='form-floating'>
-				<input id='floatingInput' type='text' name='username' placeholder='Username' required/> 
+				<input id='floatingInput' type='text' name='name' placeholder='Name' required/> 
 			</div>
 
 			<div class='form-floating'> 

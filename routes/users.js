@@ -1,5 +1,11 @@
 const express = require('express');
 let router = express.Router();
+const { body, validationResult } = require('express-validator');
+const pool = require('../config/dbConfig');
+const bcrypt = require('bcrypt');
+
+// Form Validation and password encrypt
+const validateBody = require('../middleware/schema/validator');
 
 // Login
 router.route('/login')
@@ -11,18 +17,37 @@ router.route('/login')
 	});
 
 // Logout
-router.get('/logout', 
+router.get('/logout',
 	(req, res) => {
 });
 
 // Register
 router.route('/register')
 	.get((req, res) => {
-		res.render('register', { title: "create account" })
+		res.render('register', { title: "create account", errors: null })
 	})
-	.post((req, res) => {
-		let { username, email, password, password2 } = req.body;
-		res.json(req.body);
+	.post(validateBody,
+		async (req, res) => {
+		try {
+			// if error thrown
+			const errors = validationResult(req);
+			if (!errors.isEmpty()) {
+				res.render('register', { title: 'create account', errors: errors.array() });
+			} else {
+				let { name, email, password } = req.body;
+				
+				// encrypt password with bcrypt
+				const encryptPassword = await bcrypt.hash(password, 10);
+				console.log(encryptPassword);
+
+				await pool.query(
+					"INSERT INTO users(name, password, email)VALUES ($1, $2, $3)", [name, encryptPassword, email]
+				);
+				res.redirect('/users/login');
+			};
+		} catch (err) {
+			console.log(err.message);
+		}
 	});
 
 module.exports = router;

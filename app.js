@@ -35,10 +35,10 @@ app.route('/')
 	})
 	.post((req, res) => {
 		// getJobListings(title, location);
-		async function getData(title, location, exclude){
+		async function getData(position, location, exclude){
 				
-			if (title) {
-				const [indeed_list, linkedin_list] = await Promise.all([indeed.getJobListings(title, location, 5, exclude), linkedin.getJobListings(title, location, 5, exclude)]);				
+			if (position) {
+				const [indeed_list, linkedin_list] = await Promise.all([indeed.getJobListings(position, location, 5, exclude), linkedin.getJobListings(position, location, 5, exclude)]);				
 				res.render('index', { title:"Hire.me", indeed:indeed_list, linkedin:linkedin_list, user:"Ian" });
 
 				// code to scrub job lists since they carry over
@@ -56,7 +56,7 @@ app.route('/')
 		};
 
 		// get params for scraper if they exist
-		let { title, location, company } = req.body;
+		let { position, location, company } = req.body;
 
 		// form validation for excluded company names
 		let exclude = [];
@@ -67,7 +67,7 @@ app.route('/')
 			exclude.push(company.toLowerCase());
 		}
 
-		getData(title, location, exclude);
+		getData(position, location, exclude);
 });
 	
 // 404 page
