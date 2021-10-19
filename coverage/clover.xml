@@ -1,55 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1634526067079" clover="3.2.0">
-  <project timestamp="1634526067079" name="All files">
-    <metrics statements="113" coveredstatements="105" conditionals="12" coveredconditionals="8" methods="17" coveredmethods="10" elements="142" coveredelements="123" complexity="0" loc="113" ncloc="113" packages="4" files="6" classes="6"/>
+<coverage generated="1634623965419" clover="3.2.0">
+  <project timestamp="1634623965420" name="All files">
+    <metrics statements="149" coveredstatements="124" conditionals="18" coveredconditionals="8" methods="19" coveredmethods="9" elements="186" coveredelements="141" complexity="0" loc="149" ncloc="149" packages="5" files="8" classes="8"/>
     <package name="job_board_scraping">
-      <metrics statements="35" coveredstatements="33" conditionals="4" coveredconditionals="2" methods="5" coveredmethods="4"/>
+      <metrics statements="22" coveredstatements="20" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
       <file name="app.js" path="/home/ian/Desktop/jsProjects/job_board_scraping/app.js">
-        <metrics statements="35" coveredstatements="33" conditionals="4" coveredconditionals="2" methods="5" coveredmethods="4"/>
+        <metrics statements="22" coveredstatements="20" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
         <line num="7" count="1" type="stmt"/>
-        <line num="10" count="1" type="stmt"/>
-        <line num="13" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
         <line num="14" count="1" type="stmt"/>
         <line num="17" count="1" type="stmt"/>
-        <line num="20" count="1" type="stmt"/>
-        <line num="23" count="1" type="stmt"/>
-        <line num="26" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
         <line num="27" count="1" type="stmt"/>
         <line num="28" count="1" type="stmt"/>
         <line num="29" count="1" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
         <line num="32" count="1" type="stmt"/>
-        <line num="34" count="1" type="stmt"/>
-        <line num="40" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="36" count="1" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
         <line num="41" count="1" type="stmt"/>
-        <line num="42" count="1" type="stmt"/>
-        <line num="45" count="1" type="stmt"/>
-        <line num="46" count="5" type="stmt"/>
-        <line num="49" count="1" type="stmt"/>
-        <line num="50" count="5" type="stmt"/>
-        <line num="54" count="0" type="stmt"/>
-        <line num="59" count="1" type="stmt"/>
-        <line num="62" count="1" type="stmt"/>
-        <line num="63" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="64" count="0" type="stmt"/>
-        <line num="66" count="1" type="stmt"/>
-        <line num="67" count="1" type="stmt"/>
-        <line num="70" count="1" type="stmt"/>
-        <line num="74" count="1" type="stmt"/>
-        <line num="75" count="1" type="stmt"/>
-        <line num="76" count="1" type="stmt"/>
-        <line num="79" count="1" type="stmt"/>
-      </file>
-    </package>
-    <package name="job_board_scraping.config">
-      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="dbConfig.js" path="/home/ian/Desktop/jsProjects/job_board_scraping/config/dbConfig.js">
-        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
       </file>
     </package>
     <package name="job_board_scraping.middleware">
@@ -67,8 +45,8 @@
         <line num="15" count="1" type="stmt"/>
         <line num="16" count="1" type="stmt"/>
         <line num="18" count="1" type="stmt"/>
-        <line num="20" count="15" type="cond" truecount="2" falsecount="0"/>
-        <line num="21" count="10" type="stmt"/>
+        <line num="20" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="21" count="2" type="stmt"/>
         <line num="24" count="5" type="stmt"/>
         <line num="28" count="5" type="stmt"/>
         <line num="32" count="5" type="stmt"/>
@@ -100,8 +78,8 @@
         <line num="16" count="1" type="stmt"/>
         <line num="17" count="1" type="stmt"/>
         <line num="19" count="1" type="stmt"/>
-        <line num="21" count="25" type="cond" truecount="2" falsecount="0"/>
-        <line num="22" count="20" type="stmt"/>
+        <line num="21" count="12" type="cond" truecount="2" falsecount="0"/>
+        <line num="22" count="7" type="stmt"/>
         <line num="25" count="5" type="stmt"/>
         <line num="31" count="5" type="stmt"/>
         <line num="42" count="5" type="stmt"/>
@@ -119,30 +97,97 @@
         <line num="74" count="1" type="stmt"/>
       </file>
     </package>
-    <package name="job_board_scraping.routes">
-      <metrics statements="17" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
-      <file name="results.js" path="/home/ian/Desktop/jsProjects/job_board_scraping/routes/results.js">
-        <metrics statements="6" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
+    <package name="job_board_scraping.middleware.db">
+      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="dbConfig.js" path="/home/ian/Desktop/jsProjects/job_board_scraping/middleware/db/dbConfig.js">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="2" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
-        <line num="9" count="0" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
         <line num="12" count="1" type="stmt"/>
       </file>
-      <file name="users.js" path="/home/ian/Desktop/jsProjects/job_board_scraping/routes/users.js">
-        <metrics statements="11" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
+    </package>
+    <package name="job_board_scraping.middleware.schema">
+      <metrics statements="14" coveredstatements="7" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <file name="validator.js" path="/home/ian/Desktop/jsProjects/job_board_scraping/middleware/schema/validator.js">
+        <metrics statements="14" coveredstatements="7" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="21" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="34" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="42" count="1" type="stmt"/>
+        <line num="44" count="1" type="stmt"/>
+        <line num="46" count="1" type="stmt"/>
+        <line num="48" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="job_board_scraping.routes">
+      <metrics statements="52" coveredstatements="36" conditionals="6" coveredconditionals="2" methods="10" coveredmethods="3"/>
+      <file name="index.js" path="/home/ian/Desktop/jsProjects/job_board_scraping/routes/index.js">
+        <metrics statements="24" coveredstatements="22" conditionals="4" coveredconditionals="2" methods="4" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="10" count="0" type="stmt"/>
-        <line num="14" count="1" type="stmt"/>
-        <line num="19" count="1" type="stmt"/>
-        <line num="21" count="0" type="stmt"/>
-        <line num="24" count="0" type="stmt"/>
-        <line num="25" count="0" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="19" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="25" count="5" type="stmt"/>
         <line num="28" count="1" type="stmt"/>
+        <line num="29" count="5" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="38" count="2" type="stmt"/>
+        <line num="41" count="2" type="stmt"/>
+        <line num="42" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="45" count="2" type="stmt"/>
+        <line num="46" count="2" type="stmt"/>
+        <line num="49" count="1" type="stmt"/>
+        <line num="52" count="1" type="stmt"/>
+        <line num="56" count="1" type="stmt"/>
+      </file>
+      <file name="results.js" path="/home/ian/Desktop/jsProjects/job_board_scraping/routes/results.js">
+        <metrics statements="5" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+      </file>
+      <file name="users.js" path="/home/ian/Desktop/jsProjects/job_board_scraping/routes/users.js">
+        <metrics statements="23" coveredstatements="10" conditionals="2" coveredconditionals="0" methods="5" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="34" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="53" count="1" type="stmt"/>
       </file>
     </package>
   </project>

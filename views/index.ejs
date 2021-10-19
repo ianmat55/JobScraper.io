@@ -28,7 +28,7 @@
 						<tbody>
 							<% Object.keys(indeed).forEach(function (id) { %>
 								<tr>
-									<td> <%-indeed[id]['title'] %> </td>
+									<td> <a class='job-link' href=<%-indeed[id]['link']%> > <%-indeed[id]['title'] %> </a> </td>
 									<td> <%-indeed[id]['company'] %> </td>
 									<!-- description -->
 									<td> <%-indeed[id]['location'] %> </td>
@@ -54,7 +54,7 @@
 						<tbody>
 						<% Object.keys(linkedin).forEach(function (id) { %>
 							<tr>
-								<td> <%-linkedin[id]['title'] %> </td>
+								<td> <a class='job-link' href=<%-linkedin[id]['link']%>> <%-linkedin[id]['title'] %> </a> </td>
 								<td> <%-linkedin[id]['company'] %> </td>
 								<td> <%-linkedin[id]['location'] %> </td>
 								<!-- date posted -->

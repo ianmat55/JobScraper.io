@@ -1,40 +1,27 @@
 const { describe } = require('jest-circus');
-const request = require('supertest');
-const app = require('../../app');
+const supertest = require('supertest');
+const app = require('../../app')
 
-describe("GET /users/register", () => {
-	test("status code 200", (done) => {
-		request(app)
-			.get('/')
-			.expect(200, done);
+describe('Status codes', () => {
+	describe('Register status codes', () => {
+		test('GET returns status code 200', (done) => {
+			supertest(app)
+				.get('/users/register')
+				.expect(200, done);
+			});
+		test('POST returns status code 200', (done) => {
+			supertest(app)
+				.post('/users/register')
+				.type('form')
+				.send('name=Ian&email=ianmat55@gmail.com&password=G10grAfy&password2=G10grAfy')
+				.expect(200, done);
+			});
 	});
-});
-
-describe("POST /users/register", () => {
-	test("successful registration form input", (done) => {
-		request(app)
-			.post('/users/register')
-			.send('username=ianmats')
-			.send('email=ianmat55@gmail.com')
-			.send('password=Password')
-			.send('password2=Password')
-			.expect(200, done);
-	})
-	test("successful registration form input", (done) => {
-		request(app)
-			.post('/users/register')
-			.send('username=ianmats')
-			.send('email=ianmat55@gmail.com')
-			.send('password=p')
-			.send('password2=Password')
-			.expect(400, done);
-	})
-});
-
-describe("GET /users/login", () => {
-	test("status code 200", (done) => {
-		request(app)
-			.get('/')
-			.expect(200, done);
+	describe('Login status codes', () => {
+		test('GET login status code 200', (done) => {
+			supertest(app)
+				.get('/users/login')
+				.expect(200, done);
+			});
 	});
 })

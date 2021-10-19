@@ -49,6 +49,16 @@ td {
 	max-width: 1140px !important;
 }
 
+.job-link {
+	text-decoration: none;
+	color: black;
+}
+
+.job-link:hover {
+	color: brown;
+	text-decoration: underline;
+}
+
 /* login form */
 .login-container {
 	display: flex;

@@ -1,7 +1,7 @@
 const express = require('express');
 let router = express.Router();
 const { body, validationResult } = require('express-validator');
-const pool = require('../config/dbConfig');
+const pool = require('../middleware/db/dbConfig');
 const bcrypt = require('bcrypt');
 
 // Form Validation and password encrypt
@@ -41,7 +41,7 @@ router.route('/register')
 				console.log(encryptPassword);
 
 				await pool.query(
-					"INSERT INTO users(name, password, email)VALUES ($1, $2, $3)", [name, encryptPassword, email]
+					"INSERT INTO users(name, password, email) VALUES ($1, $2, $3)", [name, encryptPassword, email]
 				);
 				res.redirect('/users/login');
 			};

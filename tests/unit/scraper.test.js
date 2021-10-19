@@ -28,6 +28,9 @@ describe('Indeed scraper functionality', () => {
 		const i = await indeed.getJobListings(dummy_title, dummy_location, length, remove);
 	
 		let listingLength = Object.keys(i).length;
+		for (const j of Object.keys(i)) {
+			console.log(i[j]['company']);
+		}
 		expect(listingLength).toBe(length);
 	});
 	
