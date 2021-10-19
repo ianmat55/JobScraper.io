@@ -1,17 +1,11 @@
 // Express base
 const express = require('express');
 const app = express();
+const session = require('express-session');
+const passport = require('passport');
+const localStrategy = require('passport-local').Strategy;
 const path = __dirname;
-
-// Postgress db
-const pool = require('./config/dbConfig');
-
-// Form Validation and password encrypt
-const { body, validationResult } = require('express-validator');
-
-// Scrapers
-const indeed = require('./middleware/indeed_scraper');
-const linkedin = require('./middleware/linkedin_scraper');
+const port = process.env.port || 3000;
 
 // Static Files
 app.use(express.static(path + '/public'));
@@ -20,60 +14,31 @@ app.use(express.static(path + '/public'));
 app.set('view engine', 'ejs');
 
 // Middleware
-app.use(express.urlencoded({extended:false}));
+app.use(express.urlencoded({ extended:false }));
+app.use(express.json());
+app.use(session({
+	secret: 'itsAsecret', //set up env later
+	resave: false,
+	saveUninitialized: true
+}));
 
-//Routes
+// Routes
 const users = require('./routes/users');
 app.use('/users', users);
 const results = require('./routes/results');
 app.use('/results', results);
+const index = require('./routes/index');
+app.use('/', index);
 
-// Home
-app.route('/')
-	.get((req, res) => {
-		res.render('index', { title:"Hire.me", indeed: null, linkedin: null, user:'Ian' });
-	})
-	.post((req, res) => {
-		// getJobListings(title, location);
-		async function getData(position, location, exclude){
-				
-			if (position) {
-				const [indeed_list, linkedin_list] = await Promise.all([indeed.getJobListings(position, location, 5, exclude), linkedin.getJobListings(position, location, 5, exclude)]);				
-				res.render('index', { title:"Hire.me", indeed:indeed_list, linkedin:linkedin_list, user:"Ian" });
-
-				// code to scrub job lists since they carry over
-				for (const property in indeed_list) {
-					delete indeed_list[property];
-				};
-
-				for (const property in linkedin_list) {
-					delete linkedin_list[property];
-				};
-
-			} else {
-				res.redirect('/');
-			};
-		};
-
-		// get params for scraper if they exist
-		let { position, location, company } = req.body;
-
-		// form validation for excluded company names
-		let exclude = [];
-		if (Array.isArray(company)) {
-			exclude = company.map(name => name.toLowerCase());
-		} else {
-			exclude = ['dummyText'];
-			exclude.push(company.toLowerCase());
-		}
-
-		getData(position, location, exclude);
-});
 	
 // 404 page
 app.use((req, res) => {
 	res.status(404);
 	res.render('404', { title: 404 });
+});
+
+app.listen(port, () => {
+	console.log(`listening for requests on port ${port}...`)
 });
 
 module.exports = app;
