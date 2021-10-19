@@ -1,10 +1,21 @@
 const pool = require('./dbConfig');
 
-async function checkEmail(email) {
-	const checker = await pool.query(
-		"SELECT id FROM users WHERE email = VALUES($1);", [email]
+function checkEmail(email) {
+	const checker = pool.query(
+		"SELECT * FROM users WHERE email = ($1);", [email]
 	);
 	return checker;	 
-}
+};
 
-module.exports = checkEmail;
+async function createUser(name, password, email) {
+	try {
+		const insert = await pool.query(
+			"INSERT INTO users(name, password, email) VALUES($1, $2, $3)", [name, password, email]
+		);
+		return insert;
+	} catch {
+		console.log("something went wrong");
+	} 
+};
+
+module.exports = { checkEmail, createUser };

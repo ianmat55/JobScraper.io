@@ -1,8 +1,5 @@
 const { check, body, validationResult } = require('express-validator');
-// const checkEmail = require('../db/dbFuncs');
-
-// Postgress db
-const pool = require('../db/dbConfig');
+const { checkEmail } = require('../db/dbFuncs');
 
 const registerValidationRules = [
 		body('name')
@@ -15,7 +12,7 @@ const registerValidationRules = [
 			.normalizeEmail()
 			// check db if email is in table
 			.custom(async (value, {req}) => {
-				const email = await pool.query("SELECT * FROM users WHERE email = $1", [value]);
+				const email = await checkEmail(value);
 				if (email.rowCount!=0) {
 					throw new Error("Email already registered");
 				} else {

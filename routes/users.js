@@ -1,9 +1,8 @@
 const express = require('express');
 let router = express.Router();
 const { body, validationResult } = require('express-validator');
-const pool = require('../middleware/db/dbConfig');
+const { createUser } = require('../middleware/db/dbFuncs');
 const bcrypt = require('bcrypt');
-
 // Form Validation and password encrypt
 const validateBody = require('../middleware/schema/validator');
 
@@ -38,11 +37,9 @@ router.route('/register')
 				
 				// encrypt password with bcrypt
 				const encryptPassword = await bcrypt.hash(password, 10);
-				console.log(encryptPassword);
 
-				await pool.query(
-					"INSERT INTO users(name, password, email) VALUES ($1, $2, $3)", [name, encryptPassword, email]
-				);
+				await createUser(name, encryptPassword, email);
+
 				res.redirect('/users/login');
 			};
 		} catch (err) {
