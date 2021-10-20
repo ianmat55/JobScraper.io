@@ -4,11 +4,12 @@ const bcrypt = require('bcrypt');
 const { checkEmail, selectById } = require('../db/dbFuncs');
 
 function passportInit(passport) {
-	const authenticateUser = (email, password, done) => {
-		const checker = checkEmail(email)
-		if (checker.rowCount>0) {
-			const user = results.row[0];
-			bcrypt.compare(password, user.password, (err, isMatch) => {
+	const authenticateUser = async (email, password, done) => {
+		const checker = await checkEmail(email)
+		const user = checker.rows[0];
+		const userPassword = checker.rows[0]['password'];
+		if (checker.rows[0]) {
+			bcrypt.compare(password, userPassword, (err, isMatch) => {
 				if (err) {
 					throw err;
 				} else if (isMatch) {
@@ -26,10 +27,11 @@ function passportInit(passport) {
 		usernameField: 'email',
 		passwordField: 'password'
 	}, authenticateUser));
-	passport.serializeUser((user, done) => done(null, user.id));
+	passport.serializeUser((user, done) => done(null, user.user_id));
 	passport.deserializeUser( async (id, done) => {
 		const query = await selectById(id);
-		return done(null, query.rows[0]);
+		console.log(query);
+		return done(null, query);
 	});
 };
 

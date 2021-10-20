@@ -4,7 +4,6 @@ const app = express();
 const session = require('express-session');
 const flash = require('express-flash');
 const passport = require('passport');
-const localStrategy = require('passport-local').Strategy;
 const path = __dirname;
 
 // Initialize Passport

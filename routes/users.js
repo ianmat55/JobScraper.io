@@ -22,7 +22,7 @@ router.route('/login')
 router.get('/logout',
 	(req, res) => {
 		req.logout();
-		res.render("index", { title: "Hireme" });
+		res.render("login", { title: "login" });
 });
 
 // Register
