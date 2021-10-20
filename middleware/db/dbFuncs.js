@@ -2,7 +2,7 @@ const pool = require('./dbConfig');
 
 function checkEmail(email) {
 	const checker = pool.query(
-		"SELECT * FROM users WHERE email = ($1);", [email]
+		"SELECT * FROM users WHERE email = ($1);", [email],
 	);
 	return checker;	 
 };
@@ -18,4 +18,12 @@ async function createUser(name, password, email) {
 	} 
 };
 
-module.exports = { checkEmail, createUser };
+function selectById(id) {
+	const query = pool.query('SELECT * FROM users WHERE id = $1', [id], (err, results) => {
+		if (err) {
+			throw err;
+		}
+	})
+	return query;
+}
+module.exports = { checkEmail, createUser, selectById };

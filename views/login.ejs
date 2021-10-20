@@ -6,7 +6,16 @@
 			<h1 id='hire.me'> Hire.me </h1>
 			<p id='description'> Hire.me is a ... </p>
 		</div>
-		<div class="login-container">
+		<div class="user-container">
+
+			<% if(message.length > 0) { %>
+				<p> <%= message %> </p>
+			<% } %>
+			
+			<% if(messages.error > 0) { %>
+				<p> <%= messages.error %> </p>
+			<% } %>
+
 			<h1> Login </h1>
 
 			<form action='/users/login' method="POST">

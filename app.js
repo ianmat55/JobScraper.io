@@ -7,6 +7,10 @@ const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
 const path = __dirname;
 
+// Initialize Passport
+const passportInit = require('./middleware/schema/passport');
+passportInit(passport);
+
 // Static Files
 app.use(express.static(path + '/public'));
 
@@ -20,8 +24,11 @@ app.use(session({
 	secret: 'itsAsecret', //set up env later
 	resave: false,
 	saveUninitialized: true,
+	cookie: {maxAge: 720}
 }));
-// app.use(flash);
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 
 // Routes
 const users = require('./routes/users');

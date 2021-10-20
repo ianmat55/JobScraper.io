@@ -5,6 +5,8 @@ let router = express.Router();
 const indeed = require('../middleware/indeed_scraper');
 const linkedin = require('../middleware/linkedin_scraper');
 
+const passport = require('passport');
+
 
 // Home
 router.route('/')
@@ -18,7 +20,7 @@ router.route('/')
 					
 				if (position) {
 					const [indeed_list, linkedin_list] = await Promise.all([indeed.getJobListings(position, location, 5, exclude), linkedin.getJobListings(position, location, 5, exclude)]);				
-					res.render('index', { title:"Hire.me", indeed:indeed_list, linkedin:linkedin_list, user:"Ian" });
+					res.render('index', { title:"Hire.me", indeed:indeed_list, linkedin:linkedin_list, user:req.user.name });
 
 					// code to scrub job lists since they carry over
 					for (const property in indeed_list) {

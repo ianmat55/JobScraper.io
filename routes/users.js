@@ -5,19 +5,24 @@ const { createUser } = require('../middleware/db/dbFuncs');
 const bcrypt = require('bcrypt');
 // Form Validation and password encrypt
 const validateBody = require('../middleware/schema/validator');
+const passport = require('passport');
 
 // Login
 router.route('/login')
 	.get((req, res) => {
-		res.render('login', { title: "login" })
+		res.render('login', { title: "login", message: req.flash('success_msg') })
 	})
-	.post((req, res) => {
-		res.redirect('/');
-	});
+	.post(passport.authenticate("local", {
+		successRedirect: '/',
+		failureRedirect: '/users/login',
+		failureFlash: true
+	}));
 
 // Logout
 router.get('/logout',
 	(req, res) => {
+		req.logout();
+		res.render("index", { title: "Hireme" });
 });
 
 // Register
@@ -39,7 +44,7 @@ router.route('/register')
 				const encryptPassword = await bcrypt.hash(password, 10);
 
 				await createUser(name, encryptPassword, email);
-
+				req.flash('success__msg', 'You are now registered');
 				res.redirect('/users/login');
 			};
 		} catch (err) {
