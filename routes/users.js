@@ -6,10 +6,11 @@ const bcrypt = require('bcrypt');
 // Form Validation and password encrypt
 const validateBody = require('../middleware/schema/validator');
 const passport = require('passport');
+const { checkAuth } = require('../middleware/schema/passport');
 
 // Login
 router.route('/login')
-	.get((req, res) => {
+	.get(checkAuth, (req, res) => {
 		res.render('login', { title: "login", message: req.flash('success_msg') })
 	})
 	.post(passport.authenticate("local", {
@@ -22,12 +23,12 @@ router.route('/login')
 router.get('/logout',
 	(req, res) => {
 		req.logout();
-		res.render("login", { title: "login" });
+		res.render("login", { title: "login", message: "You have logged out succesfully!" });
 });
 
 // Register
 router.route('/register')
-	.get((req, res) => {
+	.get(checkAuth, (req, res) => {
 		res.render('register', { title: "create account", errors: null })
 	})
 	.post(validateBody,

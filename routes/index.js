@@ -6,12 +6,12 @@ const indeed = require('../middleware/indeed_scraper');
 const linkedin = require('../middleware/linkedin_scraper');
 
 const passport = require('passport');
-
+const { notAuth } = require('../middleware/schema/passport');
 
 // Home
 router.route('/')
-	.get((req, res) => {
-		res.render('index', { title:"Hire.me", indeed: null, linkedin: null, user:'Ian' });
+	.get(notAuth, (req, res) => {
+		res.render('index', { title:"Hire.me", indeed: null, linkedin: null, user:req.user.name });
 	})
 	.post(async (req, res) => {
 		try {

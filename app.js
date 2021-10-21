@@ -7,7 +7,7 @@ const passport = require('passport');
 const path = __dirname;
 
 // Initialize Passport
-const passportInit = require('./middleware/schema/passport');
+const { passportInit } = require('./middleware/schema/passport');
 passportInit(passport);
 
 // Static Files
@@ -21,9 +21,9 @@ app.use(express.urlencoded({ extended:false }));
 app.use(express.json());
 app.use(session({
 	secret: 'itsAsecret', //set up env later
-	resave: false,
+	resave: true,
 	saveUninitialized: true,
-	cookie: {maxAge: 720}
+	cookie: {maxAge: 20*1000}
 }));
 app.use(passport.initialize());
 app.use(passport.session());

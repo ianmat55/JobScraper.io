@@ -6,9 +6,9 @@ const { checkEmail, selectById } = require('../db/dbFuncs');
 function passportInit(passport) {
 	const authenticateUser = async (email, password, done) => {
 		const checker = await checkEmail(email)
-		const user = checker.rows[0];
-		const userPassword = checker.rows[0]['password'];
 		if (checker.rows[0]) {
+			const user = checker.rows[0];
+			const userPassword = checker.rows[0]['password'];
 			bcrypt.compare(password, userPassword, (err, isMatch) => {
 				if (err) {
 					throw err;
@@ -19,7 +19,7 @@ function passportInit(passport) {
 				};
 			});
 		} else {
-			return done(null, false, {message: "Email is not registered"})
+			return done(null, false, {message: "No user with that Password"})
 		};
 	};
 
@@ -30,9 +30,22 @@ function passportInit(passport) {
 	passport.serializeUser((user, done) => done(null, user.user_id));
 	passport.deserializeUser( async (id, done) => {
 		const query = await selectById(id);
-		console.log(query);
-		return done(null, query);
+		return done(null, query.rows[0]);
 	});
 };
 
-module.exports = passportInit;
+function checkAuth (req, res, next) {
+	if (req.isAuthenticated()) {
+		return res.redirect('/');
+	}
+	next();
+}
+
+function notAuth (req, res, next) {
+	if (req.isAuthenticated()) {
+		return next();
+	}
+	res.redirect('/users/login');
+}
+
+module.exports = { passportInit, checkAuth, notAuth };
