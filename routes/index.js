@@ -5,7 +5,6 @@ let router = express.Router();
 const indeed = require('../middleware/indeed_scraper');
 const linkedin = require('../middleware/linkedin_scraper');
 
-const passport = require('passport');
 const { notAuth } = require('../middleware/schema/passport');
 
 // Home
@@ -50,7 +49,7 @@ router.route('/')
 			getData(position, location, range, exclude);
 			
 		} catch {
-			res.send(400);
+			res.sendStatus(400);
 		}
 });
 

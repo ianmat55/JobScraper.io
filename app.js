@@ -21,9 +21,9 @@ app.use(express.urlencoded({ extended:false }));
 app.use(express.json());
 app.use(session({
 	secret: 'itsAsecret', //set up env later
-	resave: true,
+	resave: false,
 	saveUninitialized: true,
-	cookie: {maxAge: 20*1000}
+	cookie: { maxAge: 900000 }
 }));
 app.use(passport.initialize());
 app.use(passport.session());

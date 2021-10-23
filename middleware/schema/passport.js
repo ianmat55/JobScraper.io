@@ -1,4 +1,3 @@
-const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
 const { checkEmail, selectById } = require('../db/dbFuncs');

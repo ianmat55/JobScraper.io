@@ -28,11 +28,22 @@ const btn = document.querySelector('#sendEmail')
 btn.addEventListener('click', () => {
 	Email.send({
 		SecureToken : "C973D7AD-F097-4B95-91F4-40ABC5567812",
-		To : 'them@website.com',
+		To : 'ianmat55@gmail.com',
 		From : "you@isp.com",
 		Subject : "This is the subject",
 		Body : "And this is the body"
-	}).then(
-	  message => alert("Email successfully sent")
-	);
+	});
 });
+
+// local storage
+document.getElementById('criteria').addEventListener("submit", e => {
+	let formElements = document.querySelector('#criteria').elements;
+	for (const element of formElements) {
+		if (element.name.length > 0) {
+			localStorage.setItem(element.name, element.value);
+		}
+	}
+});
+
+
+

@@ -4,7 +4,6 @@ function checkEmail(email) {
 	const checker = pool.query(
 		"SELECT * FROM users WHERE email = ($1);", [email]
 		);
-		console.log(checker);
 	return checker;	 
 };
 

@@ -6,6 +6,8 @@
 
 body {
 	background-color: #34699a !important;
+	/* background: #4471ef; */
+	/* font-family: "Raleway",sans-serif !important; */
 }
 
 /* Navbar */
@@ -31,11 +33,6 @@ nav .btn-primary {
 
 #addMore {
 	width: 8%;
-}
-
-body{
-	background: #4471ef;
-	font-family: "Raleway",sans-serif;
 }
 
 .range-input{
@@ -95,7 +92,7 @@ td {
 .row {
 	display: flex;
 	gap: 30px;
-	background-color: gray;
+	background-color: #1bbc9b;
 }
 
 .container {
