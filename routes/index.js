@@ -16,10 +16,9 @@ router.route('/')
 	.post(async (req, res) => {
 		try {
 			// getJobListings(title, location);
-			async function getData(position, location, exclude){
-					
+			async function getData(position, location, range, exclude){
 				if (position) {
-					const [indeed_list, linkedin_list] = await Promise.all([indeed.getJobListings(position, location, 5, exclude), linkedin.getJobListings(position, location, 5, exclude)]);				
+					const [indeed_list, linkedin_list] = await Promise.all([indeed.getJobListings(position, location, range, exclude), linkedin.getJobListings(position, location, range, exclude)]);				
 					res.render('index', { title:"Hire.me", indeed:indeed_list, linkedin:linkedin_list, user:req.user.name });
 
 					// code to scrub job lists since they carry over
@@ -37,7 +36,7 @@ router.route('/')
 			};
 
 			// get params for scraper if they exist
-			let { position, location, company } = req.body;
+			let { position, location, company, range } = req.body;
 
 			// form validation for excluded company names
 			let exclude = [];
@@ -48,7 +47,7 @@ router.route('/')
 				exclude.push(company.toLowerCase());
 			}
 
-			getData(position, location, exclude);
+			getData(position, location, range, exclude);
 			
 		} catch {
 			res.send(400);

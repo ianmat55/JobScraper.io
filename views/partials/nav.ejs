@@ -44,13 +44,21 @@
 				<ul id="fieldList">
 					<li>
 						<label for="company" class='company'> Companies you want to exclude? </label>
-						<input type="text" name="company">
+						<input type="text" name="company" />
 					</li>
 				</ul>
 				<button id='addMore' class='btn-outline-dark'> + </button>	
 			</div>
+
+			<div class="range-input">
+				<input type="range" name='range' min='0' max = "10" value="0" step="2">
+				<div class="value">
+					 <div></div>
+				</div>
+			</div> 
 			<input type="submit" class="submit" />
 		</form>
+		<input type='checkbox' id='sendEmail' />
 	</div>
   </div>
 </div>
