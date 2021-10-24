@@ -24,19 +24,6 @@ let top = parseFloat(rangeInput.value)/step * -40;
 rangeValue.style.marginTop = top+"px";
 });
 
-
-// Send email
-const btn = document.querySelector('#sendEmail')
-btn.addEventListener('click', () => {
-	Email.send({
-		SecureToken : "C973D7AD-F097-4B95-91F4-40ABC5567812",
-		To : 'ianmat55@gmail.com',
-		From : "you@isp.com",
-		Subject : "This is the subject",
-		Body : "And this is the body"
-	});
-});
-
 // local storage
 function getStorage(){
 	let formElements = document.querySelector('#criteria').elements;
@@ -64,20 +51,28 @@ function getStorage(){
 // 	}
 // }
 
-function setStorage() {
+function setFormStorage() {
 	let formElements = document.querySelector('#criteria').elements;
 	let company = [];
 	let data = {};
 	for (const element of formElements) {
 		if (element.name == 'company') {
 			company.push(element.value);
-		} else if (element.name.length > 0) {
+		} else if (element.name == 'sendEmail') {
+			if (document.getElementById('sendEmail').checked) {
+				data[element.name] = 'on';
+			}
+		} else {
 			data[element.name] = element.value;
 		}
 	};
 	data['company'] = company;
 
 	localStorage.setItem('data', JSON.stringify(data));
+};
+
+function setListingStorage() {
+
 };
 
 

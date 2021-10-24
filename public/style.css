@@ -7,9 +7,11 @@
 html, body {
 	width: 100%;
 	height: 100%;
-	background-color: #34699a !important;
+	background: #121212 !important;
 	/* background: #4471ef; */
-	/* font-family: "Raleway",sans-serif !important; */
+	font-family: "Raleway",sans-serif !important;
+	background-size: cover;
+	color: #FFFF;
 }
 
 /* Navbar */
@@ -18,6 +20,11 @@ nav .btn-primary {
 }
 
 /* Settings Section */
+.offcanvas {
+	background-color: #383838;
+	color: white;
+}
+
 #fieldList {
 	padding: 0;
 	margin: 0;
@@ -94,17 +101,36 @@ td {
 .row {
 	display: flex;
 	gap: 30px;
-	background-color: #1bbc9b;
+	/* background-color: #1bbc9b; */
+	/* background-color: #03DAC6; */
 }
+
+.col {
+	background: inherit;
+	background-color: #272727;
+	padding: 2em;
+}
+
+/* .col:before{
+	content: “ ”;
+	background: inherit; 
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0; 
+	bottom: 0;
+	box-shadow: inset 0 0 0 3000px rgba(255,255,255,0.3);
+	filter: blur(10px);
+} */
 
 .container {
 	padding: 60px;
 	max-width: 1140px !important;
+	color: #FFFF;
 }
 
 .job-link {
 	text-decoration: none;
-	color: black;
 }
 
 .job-link:hover {
@@ -114,12 +140,17 @@ td {
 
 /* login form */
 .user-container {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+	width: 100%;
+	margin: auto;
 	padding: 30px;
-	background-color: #1bbc9b;
+	/* background-color:  #84d0cc; */
+	background-color: #272727;
+	color: #FFFF;
+}
+
+.form-control {
+	background-color: #121212;
+	border: 1px solid #121212;
 }
 
 .reg-link {
@@ -129,6 +160,9 @@ td {
 
 .hero {
 	padding: 30px;
+	width: 100%;
+	margin: auto;
+	color: #FFFF;
 }
 
 .hero-body {
@@ -161,3 +195,28 @@ td {
 .reg-body .form-floating {
 	padding: 9px 0;
 }
+
+#login {
+	background-color: #BB86FC;
+	border-color: #BB86FC;
+}
+
+/* register form */
+#register-submit {
+	background-color: #BB86FC;
+	border-color: #BB86FC;
+}
+
+/* cool colors:
+salmon: #efa691
+turquoise: #03DAC6,
+lowkey turqoise: #84d0cc,
+dark: #121212,
+puple: #BB86FC,
+dark purple: #3700B3 
+error: #CF6679 
+light-grey: #383838 
+light-grey2 : #272727
+lighter-grey: #c6cacb
+navy: #17242c 
+emerald: #096f64 */
