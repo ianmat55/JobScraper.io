@@ -57,12 +57,12 @@ function getStorage(){
 	document.getElementById("criteria").submit();
 };
 
-if (localStorage) {
-	const checkEmpty = document.getElementById('noListings');
-	if (checkEmpty.textContent != 'No listings to show') {
-		getStorage();
-	}
-}
+// if (localStorage) {
+// 	const checkEmpty = document.getElementById('noListings');
+// 	if (checkEmpty.textContent != 'No listings to show') {
+// 		getStorage();
+// 	}
+// }
 
 function setStorage() {
 	let formElements = document.querySelector('#criteria').elements;
