@@ -16,7 +16,7 @@ Hire.me helps optimize your job search. Just create an account with a valid emai
 <img src='https://github.com/ianmat55/HireMe/blob/master/public/img/hireme_login.png'>
 </p>
 
-## Input position title, company, how many listings you want to see (up to 10) and any companys to exclude(optional)
+## Input Search Query
 
 <p align='center'>
 <img src='https://github.com/ianmat55/HireMe/blob/master/public/img/hireme_searchbar.png'>
