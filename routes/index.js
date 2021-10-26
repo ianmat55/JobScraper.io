@@ -1,5 +1,7 @@
 const express = require('express');
-let router = express.Router();
+const router = express.Router();
+const cron = require('node-cron');
+const nodemailer = require('nodemailer');
 
 // Scrapers
 const indeed = require('../middleware/indeed_scraper');
@@ -52,5 +54,36 @@ router.route('/')
 			res.sendStatus(400);
 		}
 });
+
+// Nodemailer 
+function scheduledEmail(sendEmail) {
+	const transporter = nodemailer.createTransport({
+		service: 'gmail',
+		auth: {
+		user: 'youremail@gmail.com',
+		pass: 'yourpassword'
+		}
+	});
+	
+	const mailOptions = {
+		from: 'youremail@gmail.com',
+		to: 'myfriend@yahoo.com',
+		subject: 'Sending Email using Node.js',
+		text: 'That was easy!'
+	};
+	
+	if (sendEmail != undefined) {
+		cron.schedule('5 8 * * 0', () => {
+			// Send e-mail
+			transporter.sendMail(mailOptions, function(error, info){
+				  if (error) {
+					console.log(error);
+				  } else {
+					console.log('Email sent: ' + info.response);
+				  }
+			});
+		});
+	};
+}
 
 module.exports = router;

@@ -7,14 +7,22 @@
 html, body {
 	width: 100%;
 	height: 100%;
-	background: #121212 !important;
+	background: #201a31 !important;
 	/* background: #4471ef; */
+	/* font-family: 'Arvo', serif; */
+	/* font-family: 'Montserrat', sans-serif; */
+	/* font-family: 'Ubuntu', sans-serif; */
 	font-family: "Raleway",sans-serif !important;
 	background-size: cover;
 	color: #FFFF;
 }
 
 /* Navbar */
+nav {
+	padding: 2em;
+	background-color: #38304d;
+}
+
 nav .btn-primary {
 	margin: auto 20px;
 }
@@ -139,18 +147,17 @@ td {
 }
 
 /* login form */
+
 .user-container {
-	width: 100%;
 	margin: auto;
 	padding: 30px;
-	/* background-color:  #84d0cc; */
-	background-color: #272727;
+	background-color: #38304d;
 	color: #FFFF;
 }
 
 .form-control {
-	background-color: #121212;
-	border: 1px solid #121212;
+	background-color: #201a31;
+	border: 1px solid #201a31;
 }
 
 .reg-link {
@@ -160,7 +167,6 @@ td {
 
 .hero {
 	padding: 30px;
-	width: 100%;
 	margin: auto;
 	color: #FFFF;
 }
@@ -172,10 +178,9 @@ td {
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	width: 500px;
-	margin-top: -250px; /* Half the height */
-	margin-left: -250px; /* Half the width */
-
+	transform: translate(-50%, -50%);
+	width: 100%;
+	padding: 0 25em;
 }
 
 .reg-body {
@@ -197,14 +202,25 @@ td {
 }
 
 #login {
-	background-color: #BB86FC;
-	border-color: #BB86FC;
+	background-color: #32e9a8;
+	border-color: #32e9a8;
+}
+
+#hireme {
+	font-weight: 700;
+	font-size: 52px;
+}
+
+#logo {
+	width: 130px;
+	height: auto;
+	filter: invert(75%) sepia(71%) saturate(447%) hue-rotate(96deg) brightness(94%) contrast(94%);
 }
 
 /* register form */
 #register-submit {
-	background-color: #BB86FC;
-	border-color: #BB86FC;
+	background-color: #32e9a8;
+	border-color: #32e9a8;
 }
 
 /* cool colors:

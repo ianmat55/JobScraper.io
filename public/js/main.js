@@ -34,14 +34,23 @@ function getStorage(){
 		} else if (element.name == 'location') {
 			element.value = location;
 		} else if (element.name == 'company') {
+			// how to set multiple inputs
 			element.value = company;
 		} else if (element.name == 'sendEmail') {
+			// checkbox not checking
+			if (sendEmail = 'on') {
+				document.getElementById('sendEmail').checked = true;
+			} else {
+				document.getElementById('sendEmail').checked = false;
+			}
 			element.value = sendEmail;
 		} else if (element.name == 'range') {
 			element.value = range;
-		}
+			// changes displayed slider range val
+			let top = parseFloat(element.value)/step * -40;
+			rangeValue.style.marginTop = top+"px";
+		} 
 	};
-	document.getElementById("criteria").submit();
 };
 
 // if (localStorage) {
@@ -61,6 +70,8 @@ function setFormStorage() {
 		} else if (element.name == 'sendEmail') {
 			if (document.getElementById('sendEmail').checked) {
 				data[element.name] = 'on';
+			} else {
+				data[element.name] = undefined;
 			}
 		} else {
 			data[element.name] = element.value;
