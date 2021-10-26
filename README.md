@@ -2,10 +2,12 @@
 <img src='https://github.com/ianmat55/HireMe/blob/master/public/img/hireme_logo.png'>
 </div>
 <br>
-Hire.me was built to optimize the job searching process. Job seekers that are casually searching for open positions from various sources on the web might find this app useful. 
+<div>
+<p> Hire.me was built to optimize the job searching process. Job seekers that are casually searching for open positions from various sources on the web might find this app useful. </p> 
 <br />
-Just create an account with a valid email, enter a desired job title and location, and the server will scrape multiple job boards and display it for you in a nicely formatted table. Current features that are in development include timed emails that contain scraped jobs for the week, application management and a working api that returns a number of jobs listings in json format.
-
+<p> Just create an account with a valid email, enter a desired job title and location, and the server will scrape multiple job boards and display it for you in a nicely formatted table. Current features that are in development include timed emails that contain scraped jobs for the week, application management and a working api that returns a number of jobs listings in json format. </p>
+<div>
+ 
 # Contents
 - How to use
 - Development
@@ -30,11 +32,13 @@ Viola! The data is scraped from the internet and displayed in tables with workin
 <img src='https://github.com/ianmat55/HireMe/blob/master/public/img/hireme_searchresults.png'>
 </div>
 
-# Development 
-Hireme is built with node and express as a backend, postgresql as a db and basic html/css/js and ejs for front end dynamic loading. The ``cheerio`` library is utilized to scrape job listings server side from a select number of popular sites (indeed, linkedin, glassdoor) and display the data client side in a nicely formatted table. Views are rendered with ejs templating. 
-
-Might upgrade to React once I learn the libray. There will also be a page to store interesting jobs, add notes and an option to recieve a weekly/daily email with the contained results. These features are currently in development. As of October 25th, 2020, this project is not production ready. Only use for a portfolio piece. 
-
+# Development
+<div>
+<p> Hireme is built with node and express as a backend, postgresql as a db and basic html/css/js and ejs for front end dynamic loading. The ``cheerio`` library is utilized to scrape job listings server side from a select number of popular sites (indeed, linkedin, glassdoor) and display the data client side in a nicely formatted table. Views are rendered with ejs templating. </p> 
+<br />
+<p> Might upgrade to React once I learn the libray. There will also be a page to store interesting jobs, add notes and an option to recieve a weekly/daily email with the contained results. These features are currently in development. As of October 25th, 2020, this project is not production ready. Only use for a portfolio piece. </p> 
+<div>
+ 
 # Tests
 In development
 
