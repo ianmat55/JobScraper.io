@@ -20,13 +20,13 @@ Hire.me helps optimize your job search. Just create an account with a valid emai
 ### Login
 
 <p align='center'>
-<img src='https://github.com/ianmat55/HireMe/blob/master/public/img/login.png'>
+<img src='https://github.com/ianmat55/HireMe/blob/master/public/img/hireme_login.png'>
 </p>
 
 ### Input Search Query
 
 <p align='center'>
-<img src='https://github.com/ianmat55/HireMe/blob/master/public/img/searchbar.png'>
+<img src='https://github.com/ianmat55/HireMe/blob/master/public/img/search_results.png'>
 </p>
 
 ### Server scrapes various job boards and returns listings!
