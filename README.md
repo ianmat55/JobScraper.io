@@ -13,7 +13,7 @@ Hire.me helps optimize your job search. Just create an account with a valid emai
 
 ### Register email
 
-<div align='center'>
+<div align='center' display='flex'>
  <img src='https://github.com/ianmat55/HireMe/blob/master/public/img/register.png'>
  <p> Testing 123 </p>
 </div>
