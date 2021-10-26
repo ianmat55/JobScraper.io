@@ -34,7 +34,7 @@ Viola! The data is scraped from the internet and displayed in tables with workin
 # Development
 Hireme is built with node and express as a backend, postgresql as a db and basic html/css/js and ejs for front end dynamic loading. The ``cheerio`` library is utilized to scrape job listings server side from a select number of popular sites (indeed, linkedin, glassdoor) and display the data client side in a nicely formatted table. Views are rendered with ejs templating. Data and form input is stored in browser cache to reduce future load times. </p> 
 
-### Futute Implementations
+### Future Implementations
 Might upgrade to React once I learn the libray. There will also be a page to store interesting jobs, add notes and an option to recieve a weekly/daily email with the contained results. These features are currently in development. As of October 25th, 2020, this project is not production ready. Only use for a portfolio piece. Will also create an endpoint that returns the data in json format for other developers to use potentially.
 
  
