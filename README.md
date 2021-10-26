@@ -14,7 +14,7 @@ Hire.me helps optimize your job search. Just create an account with a valid emai
 ### Register email
 
 
-![register]('https://github.com/ianmat55/HireMe/blob/master/public/img/register.png')
+![register](https://github.com/ianmat55/HireMe/blob/master/public/img/register.png)
 
 Input name, email, and a private password.
 
