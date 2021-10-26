@@ -9,9 +9,9 @@ Just create an account with a valid email, enter a desired job title and locatio
  
 # Contents
 - [How to use](#How-to-Use)
-- Development
-- Tests
-- Liscense 
+- [Development](#Development)
+- [Tests](#Tests)
+- [License](#License) 
  
 # How to Use
 
@@ -41,4 +41,4 @@ Might upgrade to React once I learn the libray. There will also be a page to sto
 # Tests
 In development
 
-# Liscense 
+# License 
