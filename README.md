@@ -15,7 +15,7 @@ Hire.me helps optimize your job search. Just create an account with a valid emai
 ### Register email
 
 <div>
- <img position='absolute' align='left' src='https://github.com/ianmat55/HireMe/blob/master/public/img/register.png'>
+ <img width='150' src='https://github.com/ianmat55/HireMe/blob/master/public/img/register.png'>
  <p> Input name, password and email to register an account. Email should be a valid email since the server will use it to send you weekly job listings from different job boards. User information is stored in a postgres database using the node-postgres libray </p>
 </div>
 
