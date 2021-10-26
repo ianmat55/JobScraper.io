@@ -13,27 +13,28 @@ Hire.me helps optimize your job search. Just create an account with a valid emai
 
 ### Register email
 
-<p align='center'>
-<img src='https://github.com/ianmat55/HireMe/blob/master/public/img/register.png'>
-</p>
+<div align='center'>
+ <img src='https://github.com/ianmat55/HireMe/blob/master/public/img/register.png'>
+ <p> Testing 123 </p>
+</div>
 
 Input name, email, and a private password.
 
-<p align='center'>
+<div align='center'>
 <img src='https://github.com/ianmat55/HireMe/blob/master/public/img/hireme_login.png'>
-</p>
+</div>
 
 ### Login
 
-<p align='center'>
+<div align='center'>
 <img src='https://github.com/ianmat55/HireMe/blob/master/public/img/search_results.png'>
-</p>
+</div>
 
 ### Input Search Query
 
-<p align='center'>
+<div align='center'>
 <img src='https://github.com/ianmat55/HireMe/blob/master/public/img/hireme_searchresults.png'>
-</p>
+</div>
 
 ### Server scrapes various job boards and returns listings!
 
