@@ -20,7 +20,7 @@ Hire.me helps optimize your job search. Just create an account with a valid emai
 ### Login
 
 <p align='center'>
-<img src='https://github.com/ianmat55/HireMe/blob/master/public/img/hireme_login.png'>
+<img src='https://github.com/ianmat55/HireMe/blob/master/public/img/login.png'>
 </p>
 
 ### Input Search Query
