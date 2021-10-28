@@ -4,7 +4,8 @@
   "description": "scrape job boards such as indeed or linkedin for jr dev jobs and send them to me",
   "main": "main.js",
   "scripts": {
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "dev": "nodemon -r dotenv/config server"
   },
   "author": "",
   "license": "ISC",
@@ -14,7 +15,6 @@
     "bcrypt": "^5.0.1",
     "bootstrap": "^5.1.3",
     "cheerio": "^1.0.0-rc.10",
-    "dotenv": "^10.0.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-flash": "^0.0.2",
@@ -28,6 +28,7 @@
     "pg": "^8.7.1"
   },
   "devDependencies": {
+    "dotenv": "^10.0.0",
     "supertest": "^6.1.6"
   }
 }
