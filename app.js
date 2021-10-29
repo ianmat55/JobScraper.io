@@ -5,7 +5,7 @@ const session = require('express-session');
 const flash = require('express-flash');
 const passport = require('passport');
 const pool = require('./middleware/db/dbConfig');
-const pgSession = require('connect-pg-simple')(session);
+// const pgSession = require('connect-pg-simple')(session);
 const path = __dirname;
 
 require('dotenv').config(); 
