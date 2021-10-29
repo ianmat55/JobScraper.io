@@ -31,5 +31,8 @@
   "devDependencies": {
     "dotenv": "^10.0.0",
     "supertest": "^6.1.6"
+  },
+  "engines": {
+    "node": "16.x"
   }
 }
