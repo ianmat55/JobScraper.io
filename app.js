@@ -22,7 +22,8 @@ app.set('view engine', 'ejs');
 
 // Middleware
 app.use(express.urlencoded({ extended:false }));
-app.use(express.json());
+app.use(express.json());const pgSession = require('connect-pg-simple')(session);
+app.set('trust proxy', 1) // trust first proxy
 app.use(session({
 	// store: new pgSession({
 	// 	pool: pool,
@@ -31,7 +32,7 @@ app.use(session({
 	secret: process.env.SECRET,
 	resave: false,
 	saveUninitialized: true,
-	cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 }
+	cookie: { secure: true, maxAge: 30 * 24 * 60 * 60 * 1000 }
 }));
 app.use(passport.initialize());
 app.use(passport.session());
