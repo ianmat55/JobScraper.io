@@ -12,7 +12,7 @@ const { notAuth } = require('../middleware/schema/passport');
 // Home
 router.route('/')
 	.get(notAuth, (req, res) => {
-		res.render('index', { title:"Hire.me", indeed: null, linkedin: null, user:req.user.name });
+		res.render('index', { title:"JobScraper.io", indeed: null, linkedin: null, user:req.user.name });
 	})
 	.post(async (req, res) => {
 		try {
@@ -60,8 +60,8 @@ function scheduledEmail(sendEmail) {
 	const transporter = nodemailer.createTransport({
 		service: 'gmail',
 		auth: {
-		user: 'youremail@gmail.com',
-		pass: 'yourpassword'
+			user: 'youremail@gmail.com',
+			pass: 'yourpassword'
 		}
 	});
 	

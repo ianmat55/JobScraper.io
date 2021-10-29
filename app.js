@@ -4,7 +4,11 @@ const app = express();
 const session = require('express-session');
 const flash = require('express-flash');
 const passport = require('passport');
+const pool = require('./middleware/db/dbConfig');
+const pgSession = require('connect-pg-simple')(session);
 const path = __dirname;
+
+require('dotenv').config(); 
 
 // Initialize Passport
 const { passportInit } = require('./middleware/schema/passport');
@@ -20,10 +24,14 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended:false }));
 app.use(express.json());
 app.use(session({
-	secret: 'itsAsecret', //set up env later
+	// store: new pgSession({
+	// 	pool: pool,
+	// 	// tableName: 'session',
+	// }),
+	secret: process.env.SECRET,
 	resave: false,
 	saveUninitialized: true,
-	cookie: { maxAge: 900000 }
+	cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 }
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -36,7 +44,6 @@ const results = require('./routes/results');
 app.use('/results', results);
 const index = require('./routes/index');
 app.use('/', index);
-
 	
 // 404 page
 app.use((req, res) => {
