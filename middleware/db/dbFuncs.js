@@ -13,8 +13,8 @@ async function createUser(name, password, email) {
 			"INSERT INTO users(name, password, email) VALUES($1, $2, $3)", [name, password, email]
 		);
 		return insert;
-	} catch {
-		console.log("something went wrong");
+	} catch (error) {
+		console.log(error);
 	} 
 };
 
