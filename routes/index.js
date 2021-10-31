@@ -50,7 +50,8 @@ router.route('/')
 
 			getData(position, location, range, exclude);
 			
-		} catch {
+		} catch (error) {
+			console.log(error);
 			res.sendStatus(400);
 		}
 });

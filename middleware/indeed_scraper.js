@@ -58,7 +58,6 @@ async function getJobListings(position, location, length, exclude) {
 		}
 	}
 );
-	console.log(jobs);
 	return jobs;
 }
 
