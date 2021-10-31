@@ -4,7 +4,7 @@ const app = express();
 const session = require('express-session');
 const flash = require('express-flash');
 const passport = require('passport');
-app.use(cors());
+const cors = require('cors');
 // const pgSession = require('connect-pg-simple')(session);
 const path = __dirname;
 
@@ -21,6 +21,9 @@ app.use(express.static(path + '/public'));
 app.set('view engine', 'ejs');
 
 // Middleware
+app.use(cors({
+	origin: '*'
+}));
 app.use(express.urlencoded({ extended:false }));
 app.use(express.json());const pgSession = require('connect-pg-simple')(session);
 app.use(session({
