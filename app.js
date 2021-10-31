@@ -28,10 +28,10 @@ app.use(cors({
 app.use(express.urlencoded({ extended:false }));
 app.use(express.json());
 app.use(session({
-	// store: new pgSession({
-	// 	pool: pool,
-	// 	tableName: 'session',
-	// }),
+	store: new pgSession({
+		pool: pool,
+		tableName: 'session',
+	}),
 	secret: process.env.SECRET,
 	resave: false,
 	saveUninitialized: true,
