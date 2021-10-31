@@ -12,7 +12,8 @@ const devConfig = {
 };
 
 const proConfig = {
-	connectionString: connectionString //from heroku addon
+	connectionString: connectionString, //from heroku addon
+	ssl: false
 };
 
 // const pool = new Pool(process.env.NODE_ENV === 'production' ? proConfig : devConfig);
