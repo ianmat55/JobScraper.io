@@ -5,7 +5,7 @@ const session = require('express-session');
 const flash = require('express-flash');
 const passport = require('passport');
 const cors = require('cors');
-// const pgSession = require('connect-pg-simple')(session);
+const pgSession = require('connect-pg-simple')(session);
 const path = __dirname;
 
 require('dotenv').config(); 
@@ -25,12 +25,12 @@ app.use(cors({
 	origin: '*'
 }));
 app.use(express.urlencoded({ extended:false }));
-app.use(express.json());const pgSession = require('connect-pg-simple')(session);
+app.use(express.json());
 app.use(session({
-	// store: new pgSession({
-	// 	pool: pool,
-	// 	// tableName: 'session',
-	// }),
+	store: new pgSession({
+		pool: pool,
+		tableName: 'session',
+	}),
 	secret: process.env.SECRET,
 	resave: false,
 	saveUninitialized: true,
