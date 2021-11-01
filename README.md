@@ -15,6 +15,8 @@ Just create an account with a valid email, enter a desired job title and locatio
  
 # How to Use
 
+### UPDATE: Site can only scrape listings if hosted locally, currently working on production ready site
+
 ### Register email
 Input name, password and email to register an account. Email should be a valid email since the server will use it to send you weekly job listings from different job boards. User information is stored in a postgres database using the node-postgres libray </p> 
 
