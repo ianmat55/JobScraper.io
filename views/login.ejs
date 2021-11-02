@@ -10,11 +10,15 @@
 		<div class="user-container">
 
 			<% if(message.length > 0) { %>
-				<p> <%= message %> </p>
+				<div id='message'>
+					<p> <%= message %> </p>
+				</div>
 			<% } %>
 			
 			<% if(messages.error) { %>
-				<p> <%= messages.error %> </p>
+				<div id='error'>
+					<p> <%= messages.error %> </p>
+				</div>
 			<% } %>
 
 			<h1> Login </h1>

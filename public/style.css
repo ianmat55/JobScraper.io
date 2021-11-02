@@ -27,6 +27,15 @@ nav .btn-primary {
 	margin: auto 20px;
 }
 
+.nav-link {
+	color: white !important
+}
+
+#logout {
+	background-color: #CF6679;
+	padding: 0 !important;
+}
+
 /* Settings Section */
 .offcanvas {
 	background-color: #38304d;
@@ -50,9 +59,11 @@ nav .btn-primary {
 
 #addMore {
 	width: 8%;
+	margin: 5px auto;
 }
 
 .range-input{
+	margin: .5em auto;
 	top:50%;
 	left:50%;
 	background-color: #eee;
@@ -99,6 +110,9 @@ nav .btn-primary {
 
 .submit {
 	margin-top: 10px;
+	background-color: #32e9a8;
+	border-color: #32e9a8;
+	color: black
 }
 
 /* Results Table */
@@ -147,6 +161,32 @@ td {
 }
 
 /* login form */
+
+#message {
+	background-color: #f7992f !important;
+	border-radius: 0.25rem;
+	margin: 8px auto;
+	padding: 3px;
+}
+
+#error {
+	background-color: #CF6679 !important;
+	border-radius: 0.25rem;
+	margin: 8px auto;
+	padding: 3px;
+}
+
+div p {
+	margin: 5px;
+}
+
+.company {
+	margin: .5em 0 0 0;
+}
+
+.basic-criteria label {
+	margin: .5em 0 0 0;
+}
 
 .user-container {
 	margin: auto;
