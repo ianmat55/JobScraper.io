@@ -253,6 +253,7 @@ div p {
 
 #logo {
 	width: 130px;
+	margin: 15px;
 	height: auto;
 	filter: invert(75%) sepia(71%) saturate(447%) hue-rotate(96deg) brightness(94%) contrast(94%);
 }
