@@ -1,5 +1,5 @@
 <div align='center'>
-<img src='https://github.com/ianmat55/HireMe/blob/master/public/img/hireme_logo.png'>
+<img src='https://github.com/ianmat55/JobScraper.io/blob/master/public/img/Jobscraper.io.png'>
 </div>
 <br>
 
@@ -31,7 +31,7 @@ The search query requires a job title input, location, number of listings to dis
 Viola! The data is scraped from the internet and displayed in tables with working links.
 
 <div align='center'>
-<img src='https://github.com/ianmat55/HireMe/blob/master/public/img/hireme_searchresults.png'>
+<img src='https://github.com/ianmat55/JobScraper.io/blob/master/public/img/Results.png'>
 </div>
 
 # Development
