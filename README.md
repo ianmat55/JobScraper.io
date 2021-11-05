@@ -1,5 +1,5 @@
 <div align='center'>
-<img src='https://github.com/ianmat55/JobScraper.io/blob/master/public/img/Jobscraper.io.png'>
+<img src='https://github.com/ianmat55/JobScraper.io/blob/master/public/img/logo.png'>
 </div>
 <br>
 
