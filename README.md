@@ -43,5 +43,3 @@ Might upgrade to React once I learn the libray. There will also be a page to sto
  
 # Tests
 In development
-
-# License 
