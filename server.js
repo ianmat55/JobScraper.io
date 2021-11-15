@@ -10,4 +10,4 @@ app.listen(port, () => {
 	console.log(`listening for requests on port ${port}...`)
 }); 
 
-// separate server file for testing
+// separate server file for testing purposes
