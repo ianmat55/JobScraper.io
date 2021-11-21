@@ -4,8 +4,8 @@ const cron = require('node-cron');
 const nodemailer = require('nodemailer');
 
 // Scrapers
-const indeed = require('../middleware/indeed_scraper');
-const linkedin = require('../middleware/linkedin_scraper');
+const indeed = require('../middleware/indeedScraper');
+const linkedin = require('../middleware/linkedinScraper');
 
 const { notAuth } = require('../middleware/schema/passport');
 

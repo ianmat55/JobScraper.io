@@ -28,7 +28,8 @@
     "nodemailer": "^6.7.0",
     "passport": "^0.5.0",
     "passport-local": "^1.0.0",
-    "pg": "^8.7.1"
+    "pg": "^8.7.1",
+    "puppeteer": "^11.0.0"
   },
   "devDependencies": {
     "supertest": "^6.1.6"
