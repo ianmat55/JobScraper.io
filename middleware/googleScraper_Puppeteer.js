@@ -40,7 +40,7 @@ async function scrapeGoogle(title, location) {
     const listings = {};
     titles.forEach((title, i) => listings[title] = hrefs[i]);
 
-    // console.log(listings);
+    console.log(listings);
     // console.log(Object.keys(listings).length);
     // browser.close();
     return listings;
