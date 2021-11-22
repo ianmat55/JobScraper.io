@@ -13,7 +13,7 @@ function delay(time) {
 
 async function scrapeGoogle(title, location) {
     const browser = await puppeteer.launch({
-        // using temporarily to see if its working, ideally we want this func to return json
+        // headless is required for puppeteer to work
         headless: true,
         defaultViewport: null,
         args: ["--no-sandbox", "--disable-setuid-sandbox"]
