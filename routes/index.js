@@ -18,15 +18,13 @@ router.route('/')
 			// getJobListings(title, location);
 			async function getData(position, location){
 				if (position) {
-					const google_list = await google.scrapeGoogle(position, location);	
-					console.log(google_list);			
+					const google_list = await google.scrapeGoogle(position, location);				
 					res.render('index', { title:"Hire.me", google: google_list, user:req.user.name });
 
 					// code to scrub job lists since they carry over
 					for (const property in google_list) {
 						delete google_list[property];
 					};
-
 
 				} else {
 					res.redirect('/');
