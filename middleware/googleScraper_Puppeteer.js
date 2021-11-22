@@ -13,8 +13,9 @@ function delay(time) {
 
 async function scrapeGoogle(title, location) {
     const browser = await puppeteer.launch({
-        headless: false, // using temporarily to see if its working, ideally we want this func to return json
-        defaultViewport: null
+        // using temporarily to see if its working, ideally we want this func to return json
+        // headless: false,
+        // defaultViewport: null
     });
     const page = await browser.newPage();
     await page.goto(googleURL(title, location));
