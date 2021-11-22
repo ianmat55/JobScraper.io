@@ -14,7 +14,7 @@ function delay(time) {
 async function scrapeGoogle(title, location) {
     const browser = await puppeteer.launch({
         // headless is required for puppeteer to work
-        headless: true,
+        headless: false,
         defaultViewport: null,
         args: ["--no-sandbox", "--disable-setuid-sandbox"]
     });
@@ -42,10 +42,10 @@ async function scrapeGoogle(title, location) {
 
     console.log(listings);
     // console.log(Object.keys(listings).length);
-    // browser.close();
+    browser.close();
     return listings;
 }
 
-// scrapeGoogle('web developer', 'San Jose CA USA');
+scrapeGoogle('web developer', 'San Jose CA USA');
 
 module.exports = { scrapeGoogle, googleURL };
