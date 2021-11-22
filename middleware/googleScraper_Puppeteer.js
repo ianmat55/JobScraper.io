@@ -5,6 +5,12 @@ const googleURL = (title, location) => {
     return url;
 }
 
+function delay(time) {
+    return new Promise(function(resolve) { 
+        setTimeout(resolve, time)
+    });
+ }
+
 async function scrapeGoogle(title, location) {
     const browser = await puppeteer.launch({
         headless: false, // using temporarily to see if its working, ideally we want this func to return json
@@ -12,8 +18,8 @@ async function scrapeGoogle(title, location) {
     });
     const page = await browser.newPage();
     await page.goto(googleURL(title, location));
-
-    // const listings = await page.$('.nJXhWc');
+    
+    delay(4000);
 
     const titles = await page.evaluate(() =>
         Array.from(
@@ -21,29 +27,23 @@ async function scrapeGoogle(title, location) {
             (element) => element.textContent
         )
     );
-    // const hrefs = await page.evaluate(() =>
-    //     Array.from(
-    //         document.querySelectorAll(".EDblX"),
-    //         (element) =>
-    //         element.firstElementChild.firstElementChild.firstElementChild.href
-    //     )
-    // );
 
     const hrefs = await page.evaluate(() =>
         Array.from(
             document.querySelectorAll(".pMhGee"),
-            (element) =>
-            element.href
-    )
-);
+            (element) => element.href
+        )
+    );
 
     const listings = {};
     titles.forEach((title, i) => listings[title] = hrefs[i]);
 
     // console.log(listings);
     // console.log(Object.keys(listings).length);
-    browser.close();
+    // browser.close();
     return listings;
 }
+
+// scrapeGoogle('web developer', 'San Jose CA USA');
 
 module.exports = { scrapeGoogle, googleURL };
