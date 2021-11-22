@@ -4,32 +4,29 @@ const cron = require('node-cron');
 const nodemailer = require('nodemailer');
 
 // Scrapers
-const indeed = require('../middleware/indeedScraper');
-const linkedin = require('../middleware/linkedinScraper');
+const google = require('../middleware/googleScraper_Puppeteer');
 
 const { notAuth } = require('../middleware/schema/passport');
 
 // Home
 router.route('/')
 	.get(notAuth, (req, res) => {
-		res.render('index', { title:"JobScraper.io", indeed: null, linkedin: null, user:req.user.name });
+		res.render('index', { title:"JobScraper.io", google: null, user:req.user.name });
 	})
 	.post(async (req, res) => {
 		try {
 			// getJobListings(title, location);
-			async function getData(position, location, range, exclude){
+			async function getData(position, location){
 				if (position) {
-					const [indeed_list, linkedin_list] = await Promise.all([indeed.getJobListings(position, location, range, exclude), linkedin.getJobListings(position, location, range, exclude)]);				
-					res.render('index', { title:"Hire.me", indeed:indeed_list, linkedin:linkedin_list, user:req.user.name });
+					const google_list = await google.scrapeGoogle(position, location);	
+					console.log(google_list);			
+					res.render('index', { title:"Hire.me", google: google_list, user:req.user.name });
 
 					// code to scrub job lists since they carry over
-					for (const property in indeed_list) {
-						delete indeed_list[property];
+					for (const property in google_list) {
+						delete google_list[property];
 					};
 
-					for (const property in linkedin_list) {
-						delete linkedin_list[property];
-					};
 
 				} else {
 					res.redirect('/');
@@ -37,18 +34,9 @@ router.route('/')
 			};
 
 			// get params for scraper if they exist
-			let { position, location, company, range } = req.body;
+			let { position, location } = req.body;
 
-			// form validation for excluded company names
-			let exclude = [];
-			if (Array.isArray(company)) {
-				exclude = company.map(name => name.toLowerCase());
-			} else {
-				exclude = ['dummyText'];
-				exclude.push(company.toLowerCase());
-			}
-
-			getData(position, location, range, exclude);
+			getData(position, location);
 			
 		} catch (error) {
 			console.log(error);

@@ -7,59 +7,34 @@
 	<div class="container">
 	<h1> Hello <%= user.charAt(0).toUpperCase() + user.slice(1) %> </h1>
 	<!-- Display app listings -->
-	<% if (indeed == null || linkedin == null) { %>
+	<% if (google == null) { %>
 		<h2 id='noListings'> No listings to show </h2>
 	</div>
 
 	<% } else { %>
 		<div class="row">
 			<div class="col">
-					<h3> Indeed </h3>
+					<h3> Google </h3>
 					<table>
 						<thead>
 							<tr>
 								<th> Title </th>
-								<th> Company </th>
+								<!-- <th> Company </th> -->
 								<!-- <th> Description </th> -->
-								<th> Location </th>
+								<!-- <th> Location </th> -->
 								<!-- <th> Date </th> -->
 							</tr>	
 						</thead>
 						<tbody>
-							<% Object.keys(indeed).forEach(function (id) { %>
+							<% Object.keys(google).forEach(key => { %>
 								<tr>
-									<td> <a class='job-link' href=<%-indeed[id]['link']%> > <%-indeed[id]['title'] %> </a> </td>
-									<td> <%-indeed[id]['company'] %> </td>
+									<td> <a class='job-link' href=<%-google[key]%> > <%- key %> </a> </td>
+									<!-- company -->
 									<!-- description -->
-									<td> <%-indeed[id]['location'] %> </td>
+									<!-- location -->
 									<!-- date posted -->
 								</tr>
 							<% }); %>
-						</tbody>	
-					</table>
-			</div>
-			<div class="col">
-				<!-- LINKEDIN -->
-					<h3> Linkedin </h3>
-					<table>
-						<thead>
-							<tr>
-								<th> Title </th>
-								<th> Company </th>
-								<!-- <th> Description </th> -->
-								<th> Location </th>
-								<!-- <th> Date </th> -->
-							</tr>	
-						</thead>
-						<tbody>
-						<% Object.keys(linkedin).forEach(function (id) { %>
-							<tr>
-								<td> <a class='job-link' href=<%-linkedin[id]['link']%>> <%-linkedin[id]['title'] %> </a> </td>
-								<td> <%-linkedin[id]['company'] %> </td>
-								<td> <%-linkedin[id]['location'] %> </td>
-								<!-- date posted -->
-							</tr>
-						<% }); %>
 						</tbody>	
 					</table>
 			</div>
