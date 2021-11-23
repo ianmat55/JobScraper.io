@@ -46,6 +46,6 @@ async function scrapeGoogle(title, location) {
     return listings;
 }
 
-scrapeGoogle('web developer', 'San Jose CA USA');
+// scrapeGoogle('web developer', 'San Jose CA USA');
 
 module.exports = { scrapeGoogle, googleURL };
