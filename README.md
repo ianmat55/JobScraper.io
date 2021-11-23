@@ -5,7 +5,9 @@
 
 JobScraper.io was built to optimize the job searching process. Job seekers that are casually searching for open positions from various sources on the web might find this app useful.
  
-Just create an account with a valid email, enter a desired job title and location, and the server will scrape multiple job boards and display it for you in a nicely formatted table. Current features that are in development include timed emails that contain scraped jobs for the week, application management and a working api that returns a number of jobs listings in json format. </p>
+Just create an account with a valid email, enter a desired job title and location, and the server will scrape multiple job boards and display it for you in a nicely formatted table. Current features that are in development include timed emails that contain scraped jobs for the week, application management and a working api that returns a number of jobs listings in json format.
+
+Dev <a href='https://git.heroku.com/hire-me101.git'> Link </a>
  
 # Contents
 - [How to use](#How-to-Use)
